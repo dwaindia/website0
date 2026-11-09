@@ -1,0 +1,154 @@
+Created At: 2026-11-09T20:29:18+05:30
+Completed At: 2026-11-09T20:29:19+05:30
+Showing lines 250-400 of 1036
+250: <main id="main-content">
+251:   <!-- ═══════════════════════════════
+252:        FULL-SCREEN 2-COLUMN HERO SECTION
+253:   ═══════════════════════════════ -->
+254:   <section class="w-full min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] flex flex-col lg:flex-row border-b border-border" aria-label="Hero Introduction">
+255:     
+256:     <!-- LEFT COLUMN: Theme Color Background (#f5c21b / bg-accent) with Page Heading & Description -->
+257:     <div class="w-full lg:w-1/2 bg-accent text-primary flex flex-col justify-center px-6 sm:px-10 md:px-14 lg:px-16 py-12 sm:py-16 lg:py-20">
+258:       <div class="max-w-xl">
+259:         <h1 class="font-heading font-black text-2xl sm:text-3xl md:text-4xl lg:text-[40px] uppercase text-primary tracking-tight leading-[1.3] mb-6 sm:mb-7">
+260:           CREATING SUSTAINABLE LIVELIHOODS AND WOMEN LEADERSHIP THROUGH COMMUNITY-DRIVEN GRASSROOTS ACTION
+261:         </h1>
+262:         <p class="font-sans text-primary/95 text-base sm:text-lg md:text-[18.5px] leading-[1.8] font-medium mb-8 sm:mb-9">
+263:           Explore our targeted development programs, from multi-lakh FCRA women's enterprise grants and tailoring schools to healthcare initiatives and child education centers.
+264:         </p>
+265:         <div>
+266:           <a href="#womens-banking"
+267:              class="inline-block font-sans text-sm sm:text-base font-semibold text-primary underline underline-offset-4 hover:no-underline hover:text-primary/70 transition-colors">
+268:             Know More About Our Programs
+269:           </a>
+270:         </div>
+271:       </div>
+272:     </div>
+273: 
+274:     <!-- RIGHT COLUMN: Responsive Image -->
+275:     <div class="w-full lg:w-1/2 relative overflow-hidden min-h-[320px] sm:min-h-[400px] lg:min-h-full">
+276:       <img
+277:           src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1400&q=80"
+278:           alt="Women micro-entrepreneurs engaged in self-help group financial training"
+279:           class="w-full h-full object-cover object-center"
+280:           loading="eager"
+281:           fetchpriority="high"
+282:         />
+283:     </div></section>
+284: 
+285:   <!-- Program 1: Women's Banking -->
+286:   <section id="womens-banking" class="py-16 md:py-20 border-b border-border">
+287:     <div class="max-w-content mx-auto px-4 md:px-8">
+288:       <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
+289:         <div>
+290:           <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-4">Flagship Programme · 2024–2025</span>
+291:           <h2 class="font-heading font-black text-3xl md:text-4xl text-primary mb-4 leading-tight">Women's Banking &amp;<br/>Entrepreneurship Development</h2>
+292:           <p class="font-sans text-secondary text-base leading-relaxed mb-6">A 12-month intervention targeting <strong>50 rural women entrepreneurs</strong> (prioritising BPL, single, and widowed women aged 25–50) across 3 villages in Sirivella Block, Kurnool District. Funded by Grace TPTC Foundation via an FCRA grant of <strong>₹33,19,167</strong>.</p>
+293: 
+294:           <h3 class="font-heading font-bold text-lg text-primary mb-3">6-Stage Operating Model</h3>
+295:           <ol class="space-y-3 mb-8">
+296:             <li class="flex gap-3"><span class="font-heading font-black text-accent text-sm w-6 shrink-0 mt-0.5">1.</span><div><strong class="font-heading font-semibold text-primary text-sm">Livelihood Scoping</strong> — Market research mapping local demand, value chains, and raw material availability.</div></li>
+297:             <li class="flex gap-3"><span class="font-heading font-black text-accent text-sm w-6 shrink-0 mt-0.5">2.</span><div><strong class="font-heading font-semibold text-primary text-sm">Beneficiary Selection</strong> — Community meetings with Self-Help Groups to select 50 high-interest women.</div></li>
+298:             <li class="flex gap-3"><span class="font-heading font-black text-accent text-sm w-6 shrink-0 mt-0.5">3.</span><div><strong class="font-heading font-semibold text-primary text-sm">Curriculum Customisation</strong> — Dialect-translated workbooks on financial literacy and trade skills.</div></li>
+299:             <li class="flex gap-3"><span class="font-heading font-black text-accent text-sm w-6 shrink-0 mt-0.5">4.</span><div><strong class="font-heading font-semibold text-primary text-sm">Resource Deployment</strong> — Master Trainers deployed for hands-on instruction.</div></li>
+300:             <li class="flex gap-3"><span class="font-heading font-black text-accent text-sm w-6 shrink-0 mt-0.5">5.</span><div><strong class="font-heading font-semibold text-primary text-sm">3-Phase Skill Building</strong> — Financial education &amp; digital banking; business planning; livelihood upgradation (tailoring, livestock, micro-retail).</div></li>
+301:             <li class="flex gap-3"><span class="font-heading font-black text-accent text-sm w-6 shrink-0 mt-0.5">6.</span><div><strong class="font-heading font-semibold text-primary text-sm">Monitoring &amp; Evaluation</strong> — Baseline and post-intervention tracking of income and savings.</div></li>
+302:           </ol>
+303:         </div>
+304: 
+305:         <div class="space-y-5">
+306:           <!-- KPIs -->
+307:           <div class="border border-border rounded-sm p-6">
+308:             <h3 class="font-heading font-bold text-base text-primary mb-4">Target KPIs</h3>
+309:             <ul class="space-y-2.5 text-sm font-sans text-secondary">
+310:               <li class="flex items-center gap-2"><span class="w-6 h-6 bg-accent/10 text-accent rounded-sm flex items-center justify-center shrink-0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>+35% revenue growth per beneficiary</li>
+311:               <li class="flex items-center gap-2"><span class="w-6 h-6 bg-accent/10 text-accent rounded-sm flex items-center justify-center shrink-0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>+25% formal savings growth</li>
+312:               <li class="flex items-center gap-2"><span class="w-6 h-6 bg-accent/10 text-accent rounded-sm flex items-center justify-center shrink-0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>100% bank accounts with debit cards</li>
+313:               <li class="flex items-center gap-2"><span class="w-6 h-6 bg-accent/10 text-accent rounded-sm flex items-center justify-center shrink-0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>≥60% Udyog Aadhaar registration</li>
+314:               <li class="flex items-center gap-2"><span class="w-6 h-6 bg-accent/10 text-accent rounded-sm flex items-center justify-center shrink-0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>≥50% active UPI/digital payment adoption</li>
+315:             </ul>
+316:           </div>
+317: 
+318:           <!-- Budget -->
+319:           <div class="border border-border rounded-sm p-6">
+320:             <h3 class="font-heading font-bold text-base text-primary mb-4">12-Month Budget Breakdown <span class="font-sans font-normal text-secondary text-sm">($16,064 USD total)</span></h3>
+321:             <table class="w-full text-sm font-sans">
+322:               <tbody class="divide-y divide-border">
+323:                 <tr class="py-2"><td class="py-2 text-secondary">Master Trainers (2 × 6 months)</td><td class="py-2 text-primary font-semibold text-right">$1,620</td></tr>
+324:                 <tr><td class="py-2 text-secondary">Tailoring Units (10 machines + materials)</td><td class="py-2 text-primary font-semibold text-right">$1,355</td></tr>
+325:                 <tr><td class="py-2 text-secondary">Livestock (80 baby sheep + insurance)</td><td class="py-2 text-primary font-semibold text-right">$5,550</td></tr>
+326:                 <tr><td class="py-2 text-secondary">Micro-Grocery Retail Stores (20 units)</td><td class="py-2 text-primary font-semibold text-right">$5,460</td></tr>
+327:                 <tr><td class="py-2 text-secondary">Training Rooms + Initiation + Officer</td><td class="py-2 text-primary font-semibold text-right">$2,079</td></tr>
+328:                 <tr class="border-t-2 border-accent"><td class="pt-3 font-heading font-bold text-primary">Total</td><td class="pt-3 font-heading font-bold text-accent text-right">$16,064</td></tr>
+329:               </tbody>
+330:             </table>
+331:           </div>
+332:         </div>
+333:       </div>
+334:     </div>
+335:   </section>
+336: 
+337:   <!-- Program 2: Education -->
+338:   <section id="education" class="py-16 md:py-20 bg-offwhite border-b border-border">
+339:     <div class="max-w-content mx-auto px-4 md:px-8">
+340:       <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-4">Ongoing Programme</span>
+341:       <h2 class="font-heading font-black text-3xl md:text-4xl text-primary mb-4">Dalit Child Education Support</h2>
+342:       <p class="font-sans text-secondary text-base leading-relaxed max-w-prose mb-10">Academic outreach across <strong>10 Government Primary Schools</strong> in Sirivella and Bandi Atmakur mandals — ensuring underprivileged Dalit children stay in school and receive quality educational resources.</p>
+343:       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+344:         <div class="prog-card bg-white border border-border rounded-sm p-6 transition-colors">
+345:           <div class="w-10 h-10 bg-accent/10 rounded-sm flex items-center justify-center mb-4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f5c21b" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+346:           <h3 class="font-heading font-bold text-primary text-lg mb-2">School Supply Kits</h3>
+347:           <p class="font-sans text-secondary text-sm leading-relaxed">₹1,200 per kit — includes 3 long notebooks, pens, pencils, erasers, sharpeners, colour pencils, 1 durable school bag, and 1 new uniform/dress set.</p>
+348:         </div>
+349:         <div class="prog-card bg-white border border-border rounded-sm p-6 transition-colors">
+350:           <div class="w-10 h-10 bg-accent/10 rounded-sm flex items-center justify-center mb-4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f5c21b" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+351:           <h3 class="font-heading font-bold text-primary text-lg mb-2">Merit Scholarships</h3>
+352:           <p class="font-sans text-secondary text-sm leading-relaxed">Direct financial aid awarded annually to high-performing Dalit students to prevent dropout and encourage continued academic excellence.</p>
+353:         </div>
+354:         <div class="prog-card bg-white border border-border rounded-sm p-6 transition-colors">
+355:           <div class="w-10 h-10 bg-accent/10 rounded-sm flex items-center justify-center mb-4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f5c21b" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+356:           <h3 class="font-heading font-bold text-primary text-lg mb-2">10 Govt. Schools Covered</h3>
+357:           <p class="font-sans text-secondary text-sm leading-relaxed">Active outreach in Sirivella and Bandi Atmakur mandals, ensuring every enrolled child has access to quality learning materials.</p>
+358:         </div>
+359:       </div>
+360:     </div>
+361:   </section>
+362: 
+363:   <!-- Program 3: Emergency Relief -->
+364:   <section id="relief" class="py-16 md:py-20 border-b border-border">
+365:     <div class="max-w-content mx-auto px-4 md:px-8">
+366:       <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary bg-gray-100 px-2 py-0.5 rounded-sm mb-4">Emergency Programme</span>
+367:       <h2 class="font-heading font-black text-3xl md:text-4xl text-primary mb-4">Emergency &amp; Seasonal Relief</h2>
+368:       <p class="font-sans text-secondary text-base leading-relaxed max-w-prose mb-10">Rapid-response distribution of food rations and welfare kits to BPL families during crises — including the COVID-19 pandemic response in FY 2020–21.</p>
+369:       <div class="grid md:grid-cols-2 gap-8">
+370:         <div class="border-l-4 border-accent pl-6">
+371:           <h3 class="font-heading font-bold text-xl text-primary mb-2">COVID-19 Relief (FY 2020–21)</h3>
+372:           <p class="font-sans text-secondary text-sm mb-4 leading-relaxed">Supported by a <strong>₹8,32,500</strong> grant from Divya Foundation. Distributed 30 kg dry ration kits and youth happiness kits to BPL families and street children across Kurnool District.</p>
+373:           <p class="font-heading font-semibold text-sm text-primary mb-3">30 kg Ration Package (₹1,200 value):</p>
+374:           <div class="grid grid-cols-2 gap-1 text-xs font-sans text-secondary">
+375:             <span>Rice — ₹400</span><span>Wheat Flour — ₹320</span>
+376:             <span>Moong/Toor Dal — ₹100</span><span>Refined Oil — ₹100</span>
+377:             <span>Sugar/Jaggery — ₹40</span><span>Chilli Powder — ₹30</span>
+378:             <span>Turmeric — ₹30</span><span>Potato — ₹60</span>
+379:             <span>Onion — ₹50</span><span>Soya Chunks — ₹35</span>
+380:             <span>Salt — ₹15</span><span>Packaging/Travel — ₹20</span>
+381:           </div>
+382:         </div>
+383:         <div class="border-l-4 border-primary pl-6">
+384:           <h3 class="font-heading font-bold text-xl text-primary mb-2">Dairy Farming &amp; Livestock (2016–17)</h3>
+385:           <p class="font-sans text-secondary text-sm leading-relaxed">First major international grant — <strong>₹4,39,000</strong> from Global Compassion Inc. (USA) — funding dairy farming equipment and livestock for BPL families to build sustainable income through animal husbandry.</p>
+386:         </div>
+387:       </div>
+388:     </div>
+389:   </section>
+390: 
+391:   <!-- CTA -->
+392:   <section class="py-16 md:py-20 bg-navy text-white text-center">
+393:     <div class="max-w-content mx-auto px-4 md:px-8">
+394:       <h2 class="font-heading font-black text-3xl md:text-4xl mb-4">Fund a Life-Changing Programme</h2>
+395:       <p class="font-sans text-gray-300 text-lg mb-8 max-w-xl mx-auto">Every rupee goes directly into programme delivery — training, tools, livestock, books, and emergency relief for marginalised communities.</p>
+396:       <a href="donate.html" class="inline-flex items-center gap-2 bg-red-600 text-white font-heading font-semibold text-sm tracking-widest px-8 py-4 rounded-sm transition-all duration-300 ease-out hover:bg-accent hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5 active:translate-y-0 group">
+397:         <span class="w-5 h-5 sm:w-5.5 sm:h-5.5 bg-white rounded-none flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 shadow-sm leading-none text-xs sm:text-[13px] select-none" aria-hidden="true">❤️</span>
+398:         DONATE NOW
+399:       </a>
+400:     </div>

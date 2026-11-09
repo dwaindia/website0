@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate &amp; Support — Dalit Welfare Association</title>
+  <meta name="description" content="Support Dalit Welfare Association's grassroots livelihood, child education, and women empowerment programs in Kurnool, AP. 80G tax benefits and FCRA approved." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { accent:'#2cc980','accent-dk':'#22a86a',primary:'#000105',secondary:'#3d3d3d',offwhite:'#F8F9FA',border:'#E0E0E0',navy:'#0E1F2D' },
+          fontFamily: { heading:['Roboto','Arial','sans-serif'], sans:['Inter','Arial','sans-serif'] },
+          maxWidth: { content:'1280px', prose:'760px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Inter',Arial,sans-serif;color:#000105;background:#fff;margin:0;}
+    h1,h2,h3,h4,h5,h6{font-family:'Roboto',Arial,sans-serif;}
+    #site-header{transition:transform 0.35s cubic-bezier(.4,0,.2,1),box-shadow 0.2s ease;}
+    #site-header.hide{transform:translateY(-100%);}#site-header.shadow{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+        /* ── Hamburger icon & animation ── */
+    #hamburger { cursor: pointer; }
+    .ham-line { display: block; width: 22px; height: 2px; background: #000105; border-radius: 0; transition: transform 0.3s ease, opacity 0.2s ease; }
+    #hamburger.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #hamburger.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburger.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile & Tab Right Side Menu & Overlay ── */
+    #mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 55;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+    }
+    #mobile-overlay.open {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 20rem;
+      max-width: 85vw;
+      background: #ffffff;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.18);
+      will-change: transform;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    #mobile-menu.open {
+      transform: translateX(0) !important;
+    }#search-popup{transition:opacity 0.2s ease;}
+    .nav-link{position:relative;}.nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#2cc980;transition:width 0.22s ease;}.nav-link:hover::after{width:100%;}.nav-link.active::after{width:100%;}
+    :focus-visible{outline:2px solid #2cc980;outline-offset:3px;}.s-item:hover .s-icon{background:#2cc980;color:#fff;}
+  </style>
+</head>
+<body class="pt-16 md:pt-20 overflow-x-hidden">
+
+<!-- ═══════════════════════════════
+     FIXED HEADER
+═══════════════════════════════ -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
+  <div class="max-w-content mx-auto px-4 md:px-8">
+    <div class="relative flex items-center justify-between h-16 md:h-20">
+
+      <!-- LEFT: Logo + Org Name -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 z-10" aria-label="Dalit Welfare Association — Home">
+        <img src="logo.jpg" alt="DWA logo" width="48" height="48"
+             class="w-11 h-11 md:w-12 md:h-12 rounded-none object-cover" fetchpriority="high" />
+        <div class="hidden sm:block leading-tight">
+          <span class="block font-heading font-bold text-primary text-base md:text-lg leading-tight tracking-tight uppercase">Dalit Welfare Association</span>
+          <span class="block text-[10.5px] text-secondary tracking-[0.14em] uppercase font-sans font-semibold mt-0.5">STRONGER TOGETHER</span>
+        </div>
+      </a>
+
+      <!-- CENTER: Desktop Nav -->
+      <nav class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 z-10"
+           aria-label="Primary navigation">
+        <a href="about-us.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors uppercase">ABOUT US</a>
+        <a href="programs.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors uppercase">PROGRAMS</a>
+        <a href="accountability.html" class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors uppercase">ACCOUNTABILITY</a>
+      </nav>
+
+      <!-- RIGHT: Search + Donate + Hamburger -->
+      <div class="ml-auto flex items-center gap-2 md:gap-3 z-10">
+
+        <!-- Search button (sharp edged) -->
+        <button id="search-btn" aria-label="Search the site"
+                class="w-9 h-9 flex items-center justify-center rounded-none text-secondary hover:text-accent transition-colors cursor-pointer shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+
+        <!-- Donate button (sharp edged, visible white heart icon across mobile & desktop) -->
+        <a href="donate.html"
+           class="inline-flex items-center gap-1.5 sm:gap-2 bg-red-600 hover:bg-accent text-white hover:text-primary font-heading font-bold text-[11px] sm:text-[12px] tracking-wider sm:tracking-widest px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-none transition-all duration-300 ease-out shadow-sm hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer uppercase shrink-0">
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white group-hover:fill-primary transition-colors shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>DONATE NOW</span>
+        </a>
+
+        <!-- Mobile hamburger (sharp edged) -->
+        <button id="hamburger"
+                class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-none cursor-pointer shrink-0"
+                aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════
+     MOBILE & TAB OVERLAY + MENU (right slide)
+═══════════════════════════════ -->
+<div id="mobile-overlay" aria-hidden="true"></div>
+
+<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" class="rounded-none">
+
+  <!-- Panel header -->
+  <div class="flex items-center justify-between px-6 py-5 border-b border-border bg-[#f8faf9]">
+    <div class="flex items-center gap-3">
+      <img src="logo.jpg" alt="DWA logo" class="w-8 h-8 rounded-none object-cover" />
+      <div>
+        <span class="block font-heading font-bold text-primary text-sm leading-tight uppercase">Dalit Welfare Association</span>
+        <span class="block text-[10px] text-secondary tracking-widest uppercase font-sans font-semibold mt-0.5">STRONGER TOGETHER</span>
+      </div>
+    </div>
+    <button id="close-menu" aria-label="Close menu"
+            class="w-9 h-9 flex items-center justify-center text-secondary hover:text-accent transition-colors rounded-none cursor-pointer hover:bg-gray-100">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="flex flex-col px-6 py-4" aria-label="Mobile navigation">
+    <a href="about-us.html"
+       class="py-4 border-b border-border/80 font-heading font-bold text-sm tracking-widest text-primary hover:text-accent transition-colors flex items-center justify-between">
+      <span>ABOUT US</span>
+      <span class="text-accent text-xs">→</span>
+    </a>
+    <a href="programs.html"
+       class="py-4 border-b border-border/80 font-heading font-bold text-sm tracking-widest text-primary hover:text-accent transition-colors flex items-center justify-between">
+      <span>PROGRAMS</span>
+      <span class="text-accent text-xs">→</span>
+    </a>
+    <a href="accountability.html"
+       class="py-4 font-heading font-bold text-sm tracking-widest text-primary hover:text-accent transition-colors flex items-center justify-between">
+      <span>ACCOUNTABILITY</span>
+      <span class="text-accent text-xs">→</span>
+    </a>
+  </nav>
+
+  <!-- Donate CTA at bottom (sharp edged with visible white heart icon) -->
+  <div class="mt-auto p-6 border-t border-border bg-[#fbfdfc]">
+    <a href="donate.html"
+       class="flex items-center justify-center gap-2.5 bg-red-600 hover:bg-accent text-white hover:text-primary font-heading font-bold text-xs tracking-widest px-4 py-3.5 rounded-none transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] w-full cursor-pointer uppercase group">
+      <svg class="w-4 h-4 fill-white group-hover:fill-primary transition-colors shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+      <span>DONATE NOW</span>
+    </a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════
+     SEARCH POPUP (Sharp edged)
+═══════════════════════════════ -->
+<div id="search-popup"
+     class="fixed inset-0 z-[70] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-200 flex items-start justify-center p-3 sm:p-4 pt-16 sm:pt-20 md:pt-24"
+     role="dialog" aria-modal="true" aria-label="Search website sections">
+  <div id="search-panel" class="bg-white text-primary w-full max-w-xl rounded-none shadow-2xl border border-border overflow-hidden flex flex-col max-h-[85vh]">
+    <div class="flex items-center gap-3 px-4 py-3.5 border-b border-border bg-offwhite">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary shrink-0">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search-input" placeholder="Search pages, programs, financials, policies..."
+             class="w-full bg-transparent text-sm md:text-base outline-none text-primary placeholder:text-gray-400 font-sans font-medium" />
+      <button id="close-search" aria-label="Close search" class="text-secondary hover:text-accent p-1 text-xl leading-none cursor-pointer rounded-none">&times;</button>
+    </div>
+    <div id="search-results" class="p-3 sm:p-4 overflow-y-auto space-y-1 divide-y divide-gray-100">
+      <p class="text-[11px] font-heading font-bold text-secondary uppercase tracking-wider px-2 py-1">Popular Sections</p>
+      <a href="about-us.html" class="s-item-wrap flex items-center justify-between p-2.5 rounded-none hover:bg-offwhite transition-colors" data-kw="about history founder mission vision 1993 team board governance">
+        <div>
+          <span class="block font-heading font-bold text-sm text-primary">About Dalit Welfare Association</span>
+          <span class="block text-xs text-secondary font-sans">Our journey, leadership, and grassroots impact since 1993</span>
+        </div>
+        <span class="text-accent text-xs font-mono">→</span>
+      </a>
+      <a href="programs.html" class="s-item-wrap flex items-center justify-between p-2.5 rounded-none hover:bg-offwhite transition-colors" data-kw="programs women empowerment education livelihood tailoring health agriculture">
+        <div>
+          <span class="block font-heading font-bold text-sm text-primary">Charitable Programs &amp; Initiatives</span>
+          <span class="block text-xs text-secondary font-sans">Skill training, women SHGs, and child education centers</span>
+        </div>
+        <span class="text-accent text-xs font-mono">→</span>
+      </a>
+      <a href="accountability.html" class="s-item-wrap flex items-center justify-between p-2.5 rounded-none hover:bg-offwhite transition-colors" data-kw="accountability fcra 12a 80g audit financials tax compliance mha guidestar darpan">
+        <div>
+          <span class="block font-heading font-bold text-sm text-primary">Accountability &amp; Statutory Compliance</span>
+          <span class="block text-xs text-secondary font-sans">Permanent FCRA, 12A/80G status, audits, and certifications</span>
+        </div>
+        <span class="text-accent text-xs font-mono">→</span>
+      </a>
+      <a href="donate.html" class="s-item-wrap flex items-center justify-between p-2.5 rounded-none hover:bg-offwhite transition-colors" data-kw="donate online bank transfer benevity giveindia sbi fcra foreign currency">
+        <div>
+          <span class="block font-heading font-bold text-sm text-primary">Donate &amp; Support</span>
+          <span class="block text-xs text-secondary font-sans">Indian banking, Benevity corporate matching, and wire conduits</span>
+        </div>
+        <span class="text-accent text-xs font-mono">→</span>
+      </a>
+      <p id="no-results" class="hidden text-center text-secondary py-6 text-sm font-sans">No matching sections found. Try "FCRA", "Programs", or "Donate".</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════
+      SECTION
+═══════════════════════════════ -->
+
+<main id="main-content">
+  <!-- ═══════════════════════════════
+       FULL-SCREEN 2-COLUMN HERO SECTION
+  ═══════════════════════════════ -->
+  <section class="w-full min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] flex flex-col lg:flex-row border-b border-border" aria-label="Hero Introduction">
+    
+    <!-- LEFT COLUMN: Theme Color Background (#2cc980 / bg-accent) with Page Heading & Description -->
+    <div class="w-full lg:w-1/2 bg-accent text-primary flex flex-col justify-center px-6 sm:px-10 md:px-14 lg:px-16 py-12 sm:py-16 lg:py-20">
+      <div class="max-w-xl">
+        <h1 class="font-heading font-black text-2xl sm:text-3xl md:text-4xl lg:text-[40px] uppercase text-primary tracking-tight leading-[1.3] mb-6 sm:mb-7">
+          EVERY DONATION TRANSPARENTLY POWERS WOMEN ENTREPRENEURSHIP, RURAL DIGNITY, AND EDUCATION
+        </h1>
+        <p class="font-sans text-primary/95 text-base sm:text-lg md:text-[18.5px] leading-[1.8] font-medium mb-8 sm:mb-9">
+          Support verified grassroots development in Andhra Pradesh through 80G tax-exempt Indian contributions, corporate donation matching, or direct international wire conduits.
+        </p>
+        <div>
+          <a href="#channels"
+             class="inline-block font-sans text-sm sm:text-base font-semibold text-primary underline underline-offset-4 hover:no-underline hover:text-primary/70 transition-colors">
+            Know More Giving Options
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Responsive Image -->
+    <div class="w-full lg:w-1/2 relative overflow-hidden min-h-[320px] sm:min-h-[400px] lg:min-h-full">
+      <img
+          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1400&q=80"
+          alt="Children and rural community beneficiaries supported by grassroots donations"
+          class="w-full h-full object-cover object-center"
+          loading="eager"
+          fetchpriority="high"
+        />
+    </div></section>
+
+  <!-- Donation Channels -->
+  <section class="py-16 md:py-20 border-b border-border">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
+
+        <!-- Card 1: Domestic Indian Donors (Give.do / 80G) -->
+        <div class="border-2 border-border hover:border-accent p-8 rounded-sm transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-block text-[10px] font-heading font-bold uppercase tracking-widest text-accent bg-accent/10 px-2.5 py-1 rounded-sm">
+                Indian Donors · 80G Tax Deductible
+              </span>
+              <span class="text-xs text-secondary font-medium">UPI / Cards / Net Banking</span>
+            </div>
+            <h2 class="font-heading font-black text-2xl md:text-3xl text-primary mb-3">
+              Give.do / GiveIndia
+            </h2>
+            <p class="font-sans text-secondary text-sm leading-relaxed mb-6">
+              Instant online donation with immediate 80G tax-exemption receipts. 100% verified non-profit profile on India's most trusted philanthropic portal.
+            </p>
+            <ul class="space-y-2.5 text-xs text-secondary font-sans mb-8">
+              <li class="flex items-center gap-2"><span class="text-accent font-bold">✓</span> Section 80G tax receipt issued automatically</li>
+              <li class="flex items-center gap-2"><span class="text-accent font-bold">✓</span> Supports UPI, Google Pay, PhonePe, Credit &amp; Debit Cards</li>
+              <li class="flex items-center gap-2"><span class="text-accent font-bold">✓</span> 0% commission option available</li>
+            </ul>
+          </div>
+          <a href="https://give.do/discover/18G1/dalit-welfare-association/" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-accent text-white font-heading font-bold text-xs tracking-widest uppercase py-3.5 px-6 rounded-sm transition-all duration-300 shadow-md hover:shadow-accent/25">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            DONATE SECURELY ON GIVE.DO →
+          </a>
+        </div>
+
+        <!-- Card 2: International Donors (Benevity) -->
+        <div class="border-2 border-border hover:border-accent p-8 rounded-sm transition-colors flex flex-col justify-between bg-offwhite">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-block text-[10px] font-heading font-bold uppercase tracking-widest text-accent bg-accent/10 px-2.5 py-1 rounded-sm">
+                International &amp; Corporate Donors
+              </span>
+              <span class="text-xs text-secondary font-medium">USD / EUR / GBP / CAD</span>
+            </div>
+            <h2 class="font-heading font-black text-2xl md:text-3xl text-primary mb-3">
+              Benevity Giving Platform
+            </h2>
+            <p class="font-sans text-secondary text-sm leading-relaxed mb-6">
+              Employees at leading global corporations (Google, Apple, Microsoft, SAP, Nike, Intel) can donate directly with automatic corporate matching up to 1:1 or 2:1.
+            </p>
+            <div class="bg-white border border-border p-4 rounded-sm mb-6">
+              <p class="text-xs text-secondary font-mono">
+                Benevity Cause ID: <strong class="text-accent text-sm">356-5640831431326_7b83</strong>
+              </p>
+            </div>
+            <ul class="space-y-2.5 text-xs text-secondary font-sans mb-8">
+              <li class="flex items-center gap-2"><span class="text-accent font-bold">✓</span> Local currency tax deductions in USA, UK, EU, Canada</li>
+              <li class="flex items-center gap-2"><span class="text-accent font-bold">✓</span> Automatic employer corporate match eligibility</li>
+              <li class="flex items-center gap-2"><span class="text-accent font-bold">✓</span> Direct FCRA conduit to State Bank of India New Delhi</li>
+            </ul>
+          </div>
+          <a href="https://mygoodness.benevity.org/community/cause/356-5640831431326_7b83" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dk text-primary font-heading font-bold text-xs tracking-widest uppercase py-3.5 px-6 rounded-sm transition-colors shadow-md">
+            GIVE ON BENEVITY PLATFORM ↗
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Direct FCRA Bank Wire Details -->
+  <section class="py-16 md:py-20 bg-offwhite border-b border-border">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <div class="max-w-prose mb-10">
+        <span class="inline-block text-[10px] font-heading font-bold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-2">Foreign Wire Transfers</span>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Designated SBI FCRA Bank Account</h2>
+        <p class="font-sans text-secondary text-sm leading-relaxed">
+          In accordance with Ministry of Home Affairs (MHA) regulations, all foreign contributions must be wired directly to DWA's statutory FCRA account at State Bank of India, Main Branch, New Delhi.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 md:p-8 rounded-sm border border-border">
+        <div>
+          <p class="text-[10px] font-heading font-bold uppercase tracking-widest text-secondary mb-1">Beneficiary Name</p>
+          <p class="font-heading font-bold text-primary text-base">Dalit Welfare Association</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-heading font-bold uppercase tracking-widest text-secondary mb-1">SBI FCRA Account Number</p>
+          <p class="font-heading font-bold text-accent font-mono text-base">40108791616</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-heading font-bold uppercase tracking-widest text-secondary mb-1">Account Type</p>
+          <p class="font-heading font-bold text-primary text-base">FCRA Savings Account</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-heading font-bold uppercase tracking-widest text-secondary mb-1">Bank Name &amp; Branch</p>
+          <p class="font-heading font-bold text-primary text-base">State Bank of India, Main Branch</p>
+          <p class="text-xs text-secondary mt-1">FCRA Cell (4th Floor), 11 Sansad Marg, New Delhi – 110001</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-heading font-bold uppercase tracking-widest text-secondary mb-1">IFSC Code</p>
+          <p class="font-heading font-bold text-primary font-mono text-base">SBIN0000691</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-heading font-bold uppercase tracking-widest text-secondary mb-1">SWIFT Code</p>
+          <p class="font-heading font-bold text-primary font-mono text-base">SBININBB104</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════
+     IMAGE CAROUSEL (10 Images, No Headings/Descriptions, Square Theme Buttons)
+═══════════════════════════════ -->
+<section class="w-full bg-[#000105] border-t border-gray-800 relative overflow-hidden" aria-label="Image Carousel">
+  <!-- Slides Container -->
+  <div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[480px] overflow-hidden select-none" id="image-carousel">
+    <div class="carousel-track flex h-full w-full transition-transform duration-500 ease-in-out">
+      <div class="w-full h-full shrink-0">
+        <img src="g1.jpg" alt="Dalit Welfare Association community initiative 1" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g2.jpg" alt="Dalit Welfare Association community initiative 2" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g3.jpg" alt="Dalit Welfare Association community initiative 3" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g4.jpg" alt="Dalit Welfare Association community initiative 4" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g5.jpg" alt="Dalit Welfare Association community initiative 5" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g6.jpg" alt="Dalit Welfare Association community initiative 6" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g7.jpg" alt="Dalit Welfare Association community initiative 7" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g8.jpg" alt="Dalit Welfare Association community initiative 8" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g9.jpg" alt="Dalit Welfare Association community initiative 9" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g10.jpg" alt="Dalit Welfare Association community initiative 10" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- Bottom Slider Controls: Square Shaped Buttons with Theme Colour (#2cc980) -->
+    <div class="absolute bottom-4 sm:bottom-6 left-0 right-0 flex items-center justify-center gap-2 sm:gap-2.5 z-20 pointer-events-auto px-4">
+      <!-- Prev Button (Small, Square, Theme Color) -->
+      <button type="button" class="carousel-prev w-7 h-7 sm:w-8 sm:h-8 bg-black/80 hover:bg-accent border border-accent text-accent hover:text-primary transition-all duration-200 rounded-none flex items-center justify-center cursor-pointer shadow-lg active:scale-95" aria-label="Previous image">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <!-- 10 Square Slider Indicator Buttons in Theme Color (#2cc980) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 bg-black/75 border border-gray-800 px-2.5 py-1.5 sm:px-3 sm:py-2">
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-accent rounded-none transition-all duration-200 cursor-pointer" data-slide="0" aria-label="Go to image 1"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="1" aria-label="Go to image 2"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="2" aria-label="Go to image 3"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="3" aria-label="Go to image 4"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="4" aria-label="Go to image 5"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="5" aria-label="Go to image 6"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="6" aria-label="Go to image 7"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="7" aria-label="Go to image 8"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="8" aria-label="Go to image 9"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="9" aria-label="Go to image 10"></button>
+      </div>
+
+      <!-- Next Button (Small, Square, Theme Color) -->
+      <button type="button" class="carousel-next w-7 h-7 sm:w-8 sm:h-8 bg-black/80 hover:bg-accent border border-accent text-accent hover:text-primary transition-all duration-200 rounded-none flex items-center justify-center cursor-pointer shadow-lg active:scale-95" aria-label="Next image">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════
+     NEWSLETTER SUBSCRIPTION PART OF FOOTER
+═══════════════════════════════ -->
+<section class="bg-accent text-primary py-10 md:py-14" aria-label="Newsletter Subscription">
+  <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-10">
+      
+      <!-- Left: Title & Description (Decreased Heading Size + Increased Space to Description) -->
+      <div class="max-w-xl text-left w-full">
+        <h3 class="font-heading font-black text-lg sm:text-xl md:text-2xl text-primary uppercase tracking-wide leading-tight mb-3.5 sm:mb-4 md:mb-5">
+          NEWSLETTER SUBSCRIPTION
+        </h3>
+        <p class="font-sans text-primary/90 text-sm sm:text-base leading-relaxed font-medium">
+          Receive quarterly impact briefings, audited field updates, and inspiring stories directly from Dalit communities and women entrepreneurs in rural Andhra Pradesh.
+        </p>
+      </div>
+
+      <!-- Right: Form (Sharp edged inputs & button) -->
+      <div class="w-full lg:max-w-lg">
+        <form class="newsletter-form flex flex-col sm:flex-row gap-2.5 sm:gap-3" onsubmit="event.preventDefault(); submitNewsletter(this);">
+          <input type="text" name="name" required placeholder="Your Name"
+                 class="w-full sm:w-1/3 px-4 py-3.5 bg-white text-primary placeholder:text-gray-500 rounded-none text-sm border-2 border-transparent focus:border-primary outline-none font-sans font-medium shadow-inner" />
+          <input type="email" name="email" required placeholder="Your Email Address"
+                 class="w-full sm:w-1/2 px-4 py-3.5 bg-white text-primary placeholder:text-gray-500 rounded-none text-sm border-2 border-transparent focus:border-primary outline-none font-sans font-medium shadow-inner" />
+          <button type="submit"
+                  class="w-full sm:w-auto px-6 py-3.5 bg-primary hover:bg-[#12161c] text-white font-heading font-bold text-xs uppercase tracking-widest rounded-none transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 shrink-0 cursor-pointer">
+            SUBMIT
+          </button>
+        </form>
+        <div class="newsletter-success hidden mt-3 p-2.5 bg-primary/10 border border-primary/20 rounded-none text-primary text-xs font-semibold flex items-center gap-2">
+          <span>✓</span> <span>Thank you for subscribing! You will receive our next quarterly update.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════
+     MAIN FOOTER
+═══════════════════════════════ -->
+<footer class="bg-[#030507] text-white font-sans border-t border-gray-800/80" role="contentinfo">
+  <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8 pt-12 md:pt-16 pb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+
+      <!-- Column 1: Organization, Central Office & Connect (5 cols on lg) -->
+      <div class="lg:col-span-5 pr-0 lg:pr-4">
+        <!-- Logo + Title (Sharp edged) -->
+        <div class="flex items-center gap-3.5 mb-5">
+          <div class="w-12 h-12 bg-white p-1 rounded-none border border-gray-700/80 shrink-0 flex items-center justify-center overflow-hidden">
+            <img src="logo.jpg" alt="Dalit Welfare Association logo" class="w-full h-full object-contain rounded-none" />
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg sm:text-xl md:text-2xl text-accent uppercase tracking-wide leading-tight">
+              DALIT WELFARE ASSOCIATION
+            </h3>
+            <p class="font-heading text-xs sm:text-sm text-white/80 uppercase tracking-widest font-semibold mt-0.5">
+              STRONGER TOGETHER
+            </p>
+          </div>
+        </div>
+
+        <!-- Description Paragraph -->
+        <p class="text-white text-sm md:text-[14.5px] leading-relaxed mb-6 font-normal">
+          Dalit Welfare Association (DWA) is a credible grassroots non-profit established in 1993, dedicated to rural dignity, education, and women's economic independence in Andhra Pradesh. We operate with strict statutory compliance, holding permanent FCRA certification (MHA Reg No. 010270166), 12A and 80G tax exemptions, and are officially verified on the global Benevity platform for transparent corporate matching and international donor integrity.
+        </p>
+
+        <!-- Registered Central Office -->
+        <div class="mb-6">
+          <div class="flex items-center gap-1.5 text-accent text-xs sm:text-sm font-heading font-bold uppercase tracking-wider mb-2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="2" x2="12" y2="5"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="5" y2="12"/>
+              <line x1="19" y1="12" x2="22" y2="12"/>
+            </svg>
+            <span>REGISTERED CENTRAL OFFICE</span>
+          </div>
+          <p class="text-white text-xs sm:text-sm leading-relaxed font-normal">
+            H.No. 4-84, S.C. Colony, Parnapalli Village &amp; Post, Bandi Atmakur Mandal, Kurnool District, Andhra Pradesh 518523, India.
+          </p>
+        </div>
+
+        <!-- Connect With Us (Sharp edged buttons, Theme Colour background on hover) -->
+        <div>
+          <p class="text-accent text-xs sm:text-sm font-heading font-bold uppercase tracking-wider mb-2.5">
+            CONNECT WITH US
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
+            <a href="https://id.linkedin.com/company/dalitwelfareassociation" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <span class="font-bold text-xs bg-white text-black px-1 rounded-none leading-none py-0.5 font-sans group-hover:bg-primary group-hover:text-white transition-colors">in</span>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:dalitwelfareassociation1@gmail.com"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <span>Email</span>
+            </a>
+            <a href="https://www.instagram.com/dwaindia" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0">
+                <rect x="2" y="2" width="20" height="20" rx="0" ry="0"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="tel:+918309744864"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span>Phone</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Navigation & Credibility Portals side-by-side on Mobile/Tab, stacked on Desktop (3 cols on lg) -->
+      <div class="lg:col-span-3">
+        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-1 lg:gap-8">
+          
+          <!-- Navigation -->
+          <div>
+            <h4 class="text-accent text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider mb-2.5 sm:mb-3">
+              NAVIGATION
+            </h4>
+            <div class="space-y-1.5 sm:space-y-2">
+              <a href="about-us.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                About Us
+              </a>
+              <a href="programs.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                Programs
+              </a>
+              <a href="accountability.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                Accountability
+              </a>
+              <a href="donate.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                Donate
+              </a>
+            </div>
+          </div>
+
+          <!-- Verified Credibility Portals -->
+          <div>
+            <h4 class="text-accent text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider mb-2.5 sm:mb-3">
+              VERIFIED PORTALS
+            </h4>
+            <div class="space-y-1.5 sm:space-y-2">
+              <a href="https://give.do/discover/18G1/dalit-welfare-association/" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                GiveIndia / Give.do
+              </a>
+              <a href="https://guidestarindia.org/GSN-9683/DWA" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                GuideStar India (GSN-9683)
+              </a>
+              <a href="https://mygoodness.benevity.org/community/cause/356-5640831431326_7b83" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                Benevity Causes
+              </a>
+              <a href="https://ngodarpan.gov.in/#/search-ngo" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                Goodstack / Goodera
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Column 3: Global Support & Giving + Benevity Card (4 cols on lg) -->
+      <div class="lg:col-span-4">
+        <!-- Heading with underline -->
+        <div class="mb-3">
+          <h4 class="text-accent text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider mb-2">
+            GLOBAL SUPPORT &amp; GIVING
+          </h4>
+          <div class="h-[2px] bg-accent w-full mb-4"></div>
+        </div>
+
+        <!-- Top Donate Button (Sharp edged, black background on hover, icon removed) -->
+        <a href="donate.html"
+           class="flex items-center justify-center gap-2 w-full bg-accent hover:bg-black text-primary hover:text-white font-heading font-black text-xs sm:text-sm uppercase tracking-wider py-3.5 px-4 rounded-none transition-all duration-200 shadow-md shadow-accent/20 border border-transparent hover:border-accent hover:scale-[1.01] active:scale-[0.99] mb-4 cursor-pointer">
+          <span class="font-bold">DONATE SECURELY NOW</span>
+          <span class="font-bold">→</span>
+        </a>
+
+        <!-- Benevity Card (Sharp edged) -->
+        <div class="border border-gray-800 bg-[#080c10] p-4 sm:p-5 rounded-none">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-accent text-xs sm:text-sm font-heading font-bold uppercase tracking-wider">
+              BENEVITY INTERNATIONAL GIVING
+            </span>
+            <span class="border border-accent/40 bg-[#0f281e] text-accent text-[9px] sm:text-[9.5px] font-heading font-bold uppercase tracking-widest px-2 py-0.5 rounded-none shrink-0">
+              VERIFIED CAUSE
+            </span>
+          </div>
+
+          <p class="text-white text-xs sm:text-[13px] leading-relaxed mb-3.5 font-normal">
+            Foreign contributors and global corporate employees (Google, Apple, Microsoft, SAP, Nike, Intel) can give directly via <strong class="text-accent font-semibold">Benevity</strong> (Cause ID: <span class="text-accent font-mono font-bold">356-5640831431326_7b83</span>).
+          </p>
+
+          <ul class="space-y-2 mb-4 text-xs sm:text-[12.5px] text-white/90 leading-normal">
+            <li class="flex items-start gap-2">
+              <span class="text-accent text-xs shrink-0 mt-0.5">✓</span>
+              <span>Tax-deductible receipts in local foreign currencies (USD, EUR, GBP, CAD).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent text-xs shrink-0 mt-0.5">✓</span>
+              <span>Automatic 1:1 or 2:1 corporate donation matching.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent text-xs shrink-0 mt-0.5">✓</span>
+              <span>Direct FCRA wire conduit via State Bank of India Main Branch, New Delhi.</span>
+            </li>
+          </ul>
+
+          <a href="https://mygoodness.benevity.org/community/cause/356-5640831431326_7b83" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-1.5 w-1/2 bg-accent hover:bg-black text-primary hover:text-white font-heading font-bold text-xs sm:text-sm py-2.5 px-2.5 sm:px-4 rounded-none transition-all duration-200 border border-transparent hover:border-accent text-center">
+            <span>Donate via Benevity Platform</span>
+            <span class="text-xs">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar: Group (Society No, Privacy, Refund) above Copyright note, centered -->
+    <div class="border-t border-gray-800/80 mt-10 md:mt-12 pt-6 sm:pt-8 pb-3 text-center">
+      <!-- Group: Registered Society Number, Privacy Policy, Refund Policy -->
+      <div class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-xs sm:text-sm text-white/90 mb-3">
+        <span class="text-white/80">Registered Society No. 384/1993</span>
+        <span class="text-gray-500">·</span>
+        <button type="button" onclick="openModal('privacy-modal')" class="text-white hover:text-accent font-medium underline-offset-4 hover:underline transition-colors cursor-pointer">
+          Privacy Policy
+        </button>
+        <span class="text-gray-500">·</span>
+        <button type="button" onclick="openModal('refund-modal')" class="text-white hover:text-accent font-medium underline-offset-4 hover:underline transition-colors cursor-pointer">
+          Refund Policy
+        </button>
+      </div>
+
+      <!-- Copyright note -->
+      <p class="text-xs sm:text-[13px] text-white/70 font-sans text-center">
+        &copy; 1993–<span id="year">2026</span> Dalit Welfare Association (DWA). All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════
+     PRIVACY POLICY MODAL
+═══════════════════════════════ -->
+<div id="privacy-modal" class="fixed inset-0 z-[80] bg-black/75 opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+  <div class="bg-white text-primary w-full max-w-2xl max-h-[85vh] rounded-sm shadow-2xl flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border bg-offwhite">
+      <h3 id="privacy-title" class="font-heading font-bold text-lg md:text-xl text-primary">Privacy Policy</h3>
+      <button onclick="closeModal('privacy-modal')" class="text-secondary hover:text-accent p-1 text-2xl leading-none cursor-pointer" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="p-6 overflow-y-auto font-sans text-sm text-secondary space-y-4 leading-relaxed">
+      <p class="font-medium text-primary">Last updated: January 2026</p>
+      <p>The <strong>Dalit Welfare Association (DWA)</strong> is firmly committed to protecting the privacy, confidentiality, and security of donors, beneficiaries, volunteers, and website visitors.</p>
+      <h4 class="font-heading font-bold text-primary text-base">1. Information Collection</h4>
+      <p>We only collect personal information (name, email address, postal address, PAN number for 80G tax receipts, phone number) when voluntarily submitted by donors or newsletter subscribers.</p>
+      <h4 class="font-heading font-bold text-primary text-base">2. Use of Information</h4>
+      <p>Collected details are strictly used to issue official statutory tax-deductible receipts, comply with Government of India (Income Tax Dept &amp; Ministry of Home Affairs FCRA) regulations, and deliver requested program updates. DWA <strong>never sells, trades, rents, or exchanges donor data</strong> with third parties.</p>
+      <h4 class="font-heading font-bold text-primary text-base">3. Data Security</h4>
+      <p>All donation transactions processed through accredited portals (Give.do, Benevity) employ industry-standard 256-bit SSL encryption. We maintain appropriate physical, electronic, and procedural safeguards.</p>
+      <h4 class="font-heading font-bold text-primary text-base">4. Contact Officer</h4>
+      <p>For any queries or data removal requests, please write to our Project Officer at <a href="mailto:dalitwelfareassociation1@gmail.com" class="text-accent underline font-semibold">dalitwelfareassociation1@gmail.com</a>.</p>
+    </div>
+    <div class="px-6 py-3 border-t border-border bg-offwhite text-right">
+      <button onclick="closeModal('privacy-modal')" class="px-5 py-2 bg-primary hover:bg-[#12161c] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors cursor-pointer">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     REFUND POLICY MODAL
+═══════════════════════════════ -->
+<div id="refund-modal" class="fixed inset-0 z-[80] bg-black/75 opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="refund-title">
+  <div class="bg-white text-primary w-full max-w-2xl max-h-[85vh] rounded-sm shadow-2xl flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border bg-offwhite">
+      <h3 id="refund-title" class="font-heading font-bold text-lg md:text-xl text-primary">Donation Refund &amp; Cancellation Policy</h3>
+      <button onclick="closeModal('refund-modal')" class="text-secondary hover:text-accent p-1 text-2xl leading-none cursor-pointer" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="p-6 overflow-y-auto font-sans text-sm text-secondary space-y-4 leading-relaxed">
+      <p class="font-medium text-primary">Last updated: January 2026</p>
+      <p>The <strong>Dalit Welfare Association (DWA)</strong> is a non-profit voluntary society registered under the Societies Registration Act XXI of 1860. All contributions directly support charitable programs for rural poverty alleviation, women’s livelihood, and child education.</p>
+      <h4 class="font-heading font-bold text-primary text-base">1. Voluntary Contributions</h4>
+      <p>Donations once made are voluntary and non-refundable once statutory tax exemption certificates (80G receipts or FCRA returns) are generated.</p>
+      <h4 class="font-heading font-bold text-primary text-base">2. Erroneous or Duplicate Donations</h4>
+      <p>If an erroneous deduction, technical duplicate transaction, or accidental charge occurs, the donor must notify DWA within <strong>7 working days</strong> of the transaction date. Please submit the transaction reference, payment screenshot, donor name, and banking proof to <a href="mailto:dalitwelfareassociation1@gmail.com" class="text-accent underline font-semibold">dalitwelfareassociation1@gmail.com</a>.</p>
+      <h4 class="font-heading font-bold text-primary text-base">3. Refund Processing</h4>
+      <p>Upon verification, approved refunds will be credited back to the original source account/card via the banking channel within 10 to 14 business days, in compliance with applicable banking and RBI regulations.</p>
+    </div>
+    <div class="px-6 py-3 border-t border-border bg-offwhite text-right">
+      <button onclick="closeModal('refund-modal')" class="px-5 py-2 bg-primary hover:bg-[#12161c] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors cursor-pointer">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Safe Year update ── */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ── Auto-hide header on scroll (slide away down, re-appear up) ── */
+  const header = document.getElementById('site-header');
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!header) return;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y > 70) {
+          if (y > lastY + 4) {
+            header.classList.add('hide');
+          } else if (y < lastY - 4) {
+            header.classList.remove('hide');
+          }
+        } else {
+          header.classList.remove('hide');
+        }
+        header.classList.toggle('shadow', y > 10);
+        lastY = y <= 0 ? 0 : y;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ── Mobile & Tab Right Side Menu ── */
+  const hamburger    = document.getElementById('hamburger');
+  const mobileMenu   = document.getElementById('mobile-menu');
+  const overlay      = document.getElementById('mobile-overlay');
+  const closeMenuBtn = document.getElementById('close-menu');
+
+  function openMenu() {
+    if (mobileMenu) mobileMenu.classList.add('open');
+    if (overlay)    overlay.classList.add('open');
+    if (hamburger) {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    if (overlay)    overlay.classList.remove('open');
+    if (hamburger) {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger)    hamburger.addEventListener('click', openMenu);
+  if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+  if (overlay)      overlay.addEventListener('click', closeMenu);
+
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  /* ── Search popup ── */
+  const searchBtn    = document.getElementById('search-btn');
+  const searchPopup  = document.getElementById('search-popup');
+  const closeSearch  = document.getElementById('close-search');
+  const searchInput  = document.getElementById('search-input');
+  const items        = document.querySelectorAll('.s-item-wrap');
+  const noResults    = document.getElementById('no-results');
+
+  function openSearch() {
+    if (!searchPopup) return;
+    searchPopup.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+    if (searchInput) setTimeout(() => searchInput.focus(), 50);
+  }
+  function closeSearchFn() {
+    if (!searchPopup) return;
+    searchPopup.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+    if (searchInput) searchInput.value = '';
+    items.forEach(i => i.style.display = '');
+    if (noResults) noResults.classList.add('hidden');
+  }
+
+  if (searchBtn)   searchBtn.addEventListener('click', openSearch);
+  if (closeSearch) closeSearch.addEventListener('click', closeSearchFn);
+  if (searchPopup) {
+    searchPopup.addEventListener('click', (e) => {
+      if (e.target === searchPopup) closeSearchFn();
+    });
+  }
+
+  /* Live filter */
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      let visible = 0;
+      items.forEach(item => {
+        const kw   = item.dataset.kw || '';
+        const text = item.textContent.toLowerCase();
+        const show = !q || text.includes(q) || kw.includes(q);
+        item.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (noResults) noResults.classList.toggle('hidden', visible > 0 || !q);
+    });
+  }
+
+  /* ── Policy Modals (Privacy & Refund) ── */
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+    }
+  }
+  ['privacy-modal', 'refund-modal'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) closeModal(id);
+      });
+    }
+  });
+
+  /* ── Newsletter Form Handler ── */
+  function submitNewsletter(form) {
+    const successMsg = form.parentElement.querySelector('.newsletter-success');
+    if (successMsg) {
+      successMsg.classList.remove('hidden');
+      form.reset();
+      setTimeout(() => {
+        successMsg.classList.add('hidden');
+      }, 5000);
+    }
+  }
+
+  /* ── ESC closes all popups ── */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMenu();
+      closeSearchFn();
+      closeModal('privacy-modal');
+      closeModal('refund-modal');
+    }
+  });
+
+  /* ── 10-Image Sliding Carousel Logic ── */
+  const carouselTrack = document.querySelector('.carousel-track');
+  const carouselDots  = document.querySelectorAll('.carousel-dot');
+  const prevBtn       = document.querySelector('.carousel-prev');
+  const nextBtn       = document.querySelector('.carousel-next');
+  const carouselContainer = document.getElementById('image-carousel');
+
+  if (carouselTrack && carouselDots.length > 0) {
+    let currentSlide = 0;
+    const totalSlides = carouselDots.length;
+    let autoSlideTimer = null;
+
+    function goToSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      carouselTrack.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      carouselDots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.classList.add('bg-accent');
+          dot.classList.remove('bg-transparent');
+        } else {
+          dot.classList.remove('bg-accent');
+          dot.classList.add('bg-transparent');
+        }
+      });
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      autoSlideTimer = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoSlide() {
+      if (autoSlideTimer) {
+        clearInterval(autoSlideTimer);
+        autoSlideTimer = null;
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoSlide();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoSlide();
+      });
+    }
+
+    carouselDots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        startAutoSlide();
+      });
+    });
+
+    if (carouselContainer) {
+      carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+      carouselContainer.addEventListener('mouseleave', startAutoSlide);
+
+      // Touch / swipe support
+      let touchStartX = 0;
+      carouselContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoSlide();
+      }, { passive: true });
+
+      carouselContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) nextSlide();
+          else prevSlide();
+        }
+        startAutoSlide();
+      }, { passive: true });
+    }
+
+    startAutoSlide();
+  }
+
+  </script>
+</body>
+</html>

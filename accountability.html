@@ -13,7 +13,7 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: { accent:'#2cc980','accent-dk':'#22a86a',primary:'#000105',secondary:'#3d3d3d',offwhite:'#F8F9FA',border:'#E0E0E0',navy:'#0E1F2D' },
+          colors: { accent:'#4b61de','accent-dk':'#3b4eb8',primary:'#000105',secondary:'#3d3d3d',offwhite:'#F8F9FA',border:'#E0E0E0',navy:'#0E1F2D' },
           fontFamily: { heading:['Roboto','Arial','sans-serif'], sans:['Inter','Arial','sans-serif'] },
           maxWidth: { content:'1280px', prose:'760px' },
         },
@@ -26,259 +26,1452 @@
     h1,h2,h3,h4,h5,h6{font-family:'Roboto',Arial,sans-serif;}
     #site-header{transition:transform 0.35s cubic-bezier(.4,0,.2,1),box-shadow 0.2s ease;}
     #site-header.hide{transform:translateY(-100%);}#site-header.shadow{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
-    .ham-line{display:block;width:20px;height:2px;background:#000105;border-radius:1px;transition:transform 0.25s,opacity 0.2s;}
-    #mobile-menu{transition:transform 0.32s cubic-bezier(.4,0,.2,1);}#mobile-overlay{transition:opacity 0.3s ease;}#search-popup{transition:opacity 0.2s ease;}
-    .nav-link{position:relative;}.nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#2cc980;transition:width 0.22s ease;}.nav-link:hover::after{width:100%;}.nav-link.active::after{width:100%;}
-    :focus-visible{outline:2px solid #2cc980;outline-offset:3px;}.s-item:hover .s-icon{background:#2cc980;color:#fff;}
+    /* ── Second navigation / Auto-hide sticky tab menu ── */
+    #page-tabs{transition:transform 0.35s cubic-bezier(.4,0,.2,1),box-shadow 0.2s ease;will-change:transform;}
+    #page-tabs.hide{transform:translateY(calc(-100% - 6rem));}
+        /* ── Hamburger icon & animation ── */
+    #hamburger { cursor: pointer; }
+    .ham-line { display: block; width: 22px; height: 2px; background: #000105; border-radius: 0; transition: transform 0.3s ease, opacity 0.2s ease; }
+    #hamburger.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #hamburger.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburger.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile & Tab Right Side Menu & Overlay ── */
+    #mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 55;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+    }
+    #mobile-overlay.open {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 20rem;
+      max-width: 85vw;
+      background: #ffffff;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.18);
+      will-change: transform;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    #mobile-menu.open {
+      transform: translateX(0) !important;
+    }#search-popup{transition:opacity 0.2s ease;}
+    .nav-link{position:relative;}.nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#4b61de;transition:width 0.22s ease;}.nav-link:hover::after{width:100%;}.nav-link.active::after{width:100%;}
+    :focus-visible{outline:2px solid #4b61de;outline-offset:3px;}.s-item:hover .s-icon{background:#4b61de;color:#fff;}
     .tbl-row:nth-child(even){background:#F8F9FA;}
   </style>
 </head>
-<body class="pt-16 md:pt-20">
+<body class="pt-16 md:pt-20 overflow-x-hidden">
 
-<!-- HEADER -->
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
+<!-- ═══════════════════════════════
+     FIXED HEADER
+═══════════════════════════════ -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-accent">
   <div class="max-w-content mx-auto px-4 md:px-8">
-    <div class="relative flex items-center h-16 md:h-20">
-      <a href="index.html" class="flex items-center gap-3 shrink-0 z-10" aria-label="Home">
-        <img src="logo.jpg" alt="DWA logo" width="44" height="44" class="w-10 h-10 md:w-11 md:h-11 rounded-sm object-cover" fetchpriority="high" />
-        <div class="hidden md:block leading-tight">
-          <span class="block font-heading font-bold text-primary text-sm leading-snug">Dalit Welfare Association</span>
-          <span class="block text-[10px] text-secondary tracking-widest uppercase font-sans">Est. 1993 · Kurnool, AP</span>
+    <div class="relative flex items-center justify-between h-16 md:h-20">
+
+      <!-- LEFT: Logo + Org Name -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 z-10" aria-label="Dalit Welfare Association — Home">
+        <img src="logo.jpg" alt="DWA logo" width="48" height="48"
+             class="w-11 h-11 md:w-12 md:h-12 rounded-none object-cover" fetchpriority="high" />
+        <div class="hidden sm:block leading-tight">
+          <span class="block font-heading font-bold text-primary text-base md:text-lg leading-tight tracking-tight uppercase">Dalit Welfare Association</span>
+          <span class="block text-[10.5px] text-secondary tracking-[0.14em] uppercase font-sans font-semibold mt-0.5">STRONGER TOGETHER</span>
         </div>
       </a>
-      <nav class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 z-10">
-        <a href="about-us.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors">ABOUT US</a>
-        <a href="programs.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors">PROGRAMS</a>
-        <a href="accountability.html" class="nav-link active font-heading font-semibold text-[13px] tracking-widest text-accent">ACCOUNTABILITY</a>
+
+      <!-- CENTER: Desktop Nav -->
+      <nav class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 z-10"
+           aria-label="Primary navigation">
+        <a href="about-us.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors uppercase">ABOUT US</a>
+        <a href="programs.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors uppercase">PROGRAMS</a>
+        <a href="accountability.html" class="nav-link active font-heading font-semibold text-[13px] tracking-widest text-accent hover:text-accent transition-colors uppercase">ACCOUNTABILITY</a>
       </nav>
-      <div class="ml-auto flex items-center gap-2 md:gap-3 z-10">
-        <button id="search-btn" aria-label="Search" class="w-9 h-9 flex items-center justify-center rounded-sm text-secondary hover:text-accent transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </button>
-        <a href="donate.html" class="hidden sm:inline-flex items-center gap-2 bg-red-600 text-white font-heading font-semibold text-[12px] tracking-widest px-4 py-2.5 rounded-sm hover:bg-red-700 transition-colors">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          DONATE NOW
-        </a>
-        <button id="hamburger" class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm" aria-label="Open menu" aria-expanded="false">
-          <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
-        </button>
+
+  <!-- ═══════════════════════════════
+       TAB PANEL 1: COMPLIANCE (Active by default)
+  ═══════════════════════════════ -->
+  <section id="tab-compliance" class="tab-panel block scroll-mt-32 md:scroll-mt-36 py-12 sm:py-16 md:py-20 bg-offwhite border-b border-border" aria-label="Statutory Identity & Compliance">
+    <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+      
+      <!-- Horizontal 2-Column Card -->
+      <div class="border border-gray-300 hover:border-black transition-colors duration-300 bg-white flex flex-col lg:flex-row overflow-hidden group shadow-sm">
+        
+        <!-- Left Column: Image Placeholder -->
+        <div class="w-full lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 min-h-[300px] sm:min-h-[380px] lg:min-h-full flex flex-col items-center justify-center p-8 text-center border-b lg:border-b-0 lg:border-r border-gray-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border border-gray-300 shadow-sm flex items-center justify-center text-primary mb-3.5 group-hover:scale-105 transition-transform duration-300">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <span class="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-primary">
+            Image Placeholder : Statutory Registrations &amp; Compliance
+          </span>
+          <span class="text-[11px] text-secondary font-sans mt-1">Aspect Ratio 4:3 / 16:10</span>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full lg:w-1/2 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+          <div>
+            <h2 class="font-heading font-bold text-2xl sm:text-3xl text-primary leading-tight mb-4 tracking-tight">
+              Statutory Legal Identity, 12A/80G Tax Exemptions &amp; NITI Aayog Listing
+            </h2>
+
+            <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed mb-6 text-justify">
+              Registered non-profit voluntary society (Regd No. 250 of 1993) under Andhra Pradesh Societies Registration Act. DWA holds perpetual Section 12A registration, Section 80G 50% donor tax deductions, and active NITI Aayog NGO Darpan accreditation.
+            </p>
+
+            <div class="mb-8">
+              <button type="button"
+                      data-open-drawer="compliance"
+                      class="inline-flex items-center gap-2 font-heading font-bold text-xs sm:text-sm tracking-wider uppercase text-primary hover:text-accent border-b-2 border-primary hover:border-accent pb-1 transition-colors cursor-pointer group/link">
+                <span>Inspect Statutory Registration Records</span>
+                <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Highlight Buttons -->
+          <div class="pt-5 border-t border-gray-200">
+            <p class="font-heading font-bold text-xs uppercase tracking-wider text-secondary mb-3.5">
+              Statutory Identifiers
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button type="button" data-drawer-target="compliance" data-highlight-id="drawer-comp-hl-0" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Society Reg No. 250 of 1993</span>
+              </button>
+
+              <button type="button" data-drawer-target="compliance" data-highlight-id="drawer-comp-hl-1" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Income Tax Section 12A</span>
+              </button>
+
+              <button type="button" data-drawer-target="compliance" data-highlight-id="drawer-comp-hl-2" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Section 80G Tax Deductible</span>
+              </button>
+
+              <button type="button" data-drawer-target="compliance" data-highlight-id="drawer-comp-hl-3" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">NITI Aayog NGO Darpan</span>
+              </button>
+
+              <button type="button" data-drawer-target="compliance" data-highlight-id="drawer-comp-hl-4" class="drawer-trigger-btn sm:col-span-2 text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="0"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Permanent PAN &amp; TAN Tax Identification</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </div>
-</header>
 
-<div id="mobile-overlay" class="fixed inset-0 bg-black/60 z-[55] opacity-0 pointer-events-none" aria-hidden="true"></div>
-<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white z-[60] flex flex-col translate-x-full shadow-2xl" role="dialog" aria-modal="true">
-  <div class="flex items-center justify-between px-5 py-4 border-b border-border">
-    <span class="font-heading font-bold text-primary text-sm tracking-wide">MENU</span>
-    <button id="close-menu" aria-label="Close menu" class="w-9 h-9 flex items-center justify-center text-secondary hover:text-accent transition-colors">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <nav class="flex flex-col px-5 py-2">
-    <a href="about-us.html"       class="py-4 border-b border-border font-heading font-semibold text-sm tracking-widest text-primary hover:text-accent transition-colors">ABOUT US</a>
-    <a href="programs.html"       class="py-4 border-b border-border font-heading font-semibold text-sm tracking-widest text-primary hover:text-accent transition-colors">PROGRAMS</a>
-    <a href="accountability.html" class="py-4 font-heading font-semibold text-sm tracking-widest text-accent">ACCOUNTABILITY</a>
-  </nav>
-  <div class="mt-auto p-5 border-t border-border">
-    <a href="donate.html" class="flex items-center justify-center gap-2 bg-red-600 text-white font-heading font-semibold text-[12px] tracking-widest px-4 py-3.5 rounded-sm hover:bg-red-700 transition-colors w-full">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-      DONATE NOW
-    </a>
-  </div>
-</div>
-
-<div id="search-popup" class="fixed inset-0 z-[70] bg-black/60 opacity-0 pointer-events-none" role="dialog" aria-modal="true">
-  <div class="flex justify-center pt-20 md:pt-28 px-4">
-    <div class="bg-white w-full max-w-xl rounded-sm shadow-2xl overflow-hidden">
-      <div class="flex items-center border-b border-border px-4 py-3.5 gap-3">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3d3d3d" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="search-input" type="search" placeholder="Search programs, sections, documents…" class="flex-1 font-sans text-sm text-primary placeholder:text-gray-400 outline-none bg-transparent" autocomplete="off" />
-        <button id="close-search" class="text-secondary hover:text-accent p-1 transition-colors" aria-label="Close search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="p-4 max-h-[60vh] overflow-y-auto">
-        <p class="font-heading font-semibold text-[10px] text-secondary uppercase tracking-[0.12em] mb-3">Popular Sections</p>
-        <ul id="search-results" class="space-y-0.5">
-          <li class="s-item-wrap" data-kw="who we are history leadership"><a href="about-us.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-accent/10 text-accent rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Who We Are</p><p class="font-sans text-xs text-secondary">History, leadership &amp; governance</p></div></a></li>
-          <li class="s-item-wrap" data-kw="programs women banking entrepreneurship"><a href="programs.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-accent/10 text-accent rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Our Programs</p><p class="font-sans text-xs text-secondary">Women's banking, education, relief</p></div></a></li>
-          <li class="s-item-wrap" data-kw="accountability fcra pan 80g darpan"><a href="accountability.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-accent/10 text-accent rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Accountability &amp; Legal</p><p class="font-sans text-xs text-secondary">FCRA, 80G, PAN, DARPAN</p></div></a></li>
-          <li class="s-item-wrap" data-kw="donate donation 80g"><a href="donate.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-red-100 text-red-600 rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Donate &amp; Support</p><p class="font-sans text-xs text-secondary">Give.do, 80G benefits</p></div></a></li>
-        </ul>
-        <p id="no-results" class="hidden font-sans text-sm text-secondary text-center py-6">No sections found.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PAGE HERO -->
-<section class="bg-navy border-b-4 border-accent py-16 md:py-24">
-  <div class="max-w-content mx-auto px-4 md:px-8">
-    <p class="inline-flex items-center gap-2 text-accent text-[11px] font-heading font-semibold tracking-[0.14em] uppercase mb-4"><span class="inline-block w-5 h-px bg-accent"></span> Transparency &amp; Trust</p>
-    <h1 class="font-heading font-black text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">Accountability</h1>
-    <p class="font-sans text-gray-300 text-lg max-w-2xl leading-relaxed">Complete statutory compliance, audited financial statements, and third-party verification — because your trust is everything.</p>
-  </div>
-</section>
-
-<main>
-
-  <!-- Legal Identifiers -->
-  <section class="py-16 md:py-20 border-b border-border">
-    <div class="max-w-content mx-auto px-4 md:px-8">
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Legal Identifiers &amp; Statutory Compliance</h2>
-      <p class="font-sans text-secondary text-base mb-8 max-w-prose">DWA maintains a complete, audited statutory compliance profile across federal Indian taxation and regulatory authorities.</p>
-      <div class="overflow-x-auto rounded-sm border border-border">
-        <table class="w-full text-sm font-sans min-w-[600px]">
-          <thead>
-            <tr class="bg-primary text-white">
-              <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Regulatory Authority / Credential</th>
-              <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Registration / URN</th>
-              <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Validity / Details</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-border">
-            <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Society Registration Act XXI of 1860</td><td class="px-5 py-4 font-mono text-accent">384/1993</td><td class="px-5 py-4 text-secondary">District Registrar, Kurnool · Issued June 22, 1993</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Permanent Account Number (PAN)</td><td class="px-5 py-4 font-mono text-accent">AAKFD2353B</td><td class="px-5 py-4 text-secondary">Income Tax Department, Govt. of India</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Foreign Contribution Regulation Act (FCRA)</td><td class="px-5 py-4 font-mono text-accent">010270166</td><td class="px-5 py-4 text-secondary">MHA · Renewed July 7, 2023 · Valid Oct 2023 – Sept 2028</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Income Tax Section 12A</td><td class="px-5 py-4 font-mono text-accent text-xs">AAKFD2353BE20214</td><td class="px-5 py-4 text-secondary">Form 10AC · AY 2022-23 to 2024-25 · May 28, 2021</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Income Tax Section 80G Approval</td><td class="px-5 py-4 font-mono text-accent text-xs">AAKFD2353BF20216</td><td class="px-5 py-4 text-secondary">Form 10AC · AY 2021-22 to 2024-25 · Sept 24, 2021</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">NITI Aayog NGO DARPAN</td><td class="px-5 py-4 font-mono text-accent">AP/2021/0276162</td><td class="px-5 py-4 text-secondary">DARPAN Registration · March 18, 2021</td></tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </section>
 
-  <!-- Financial Statements -->
-  <section id="financials" class="py-16 md:py-20 bg-offwhite border-b border-border">
-    <div class="max-w-content mx-auto px-4 md:px-8">
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Five-Year Financial Performance</h2>
-      <p class="font-sans text-secondary text-base mb-2 max-w-prose">Independently audited by <strong>Sivapuram Subramanyam &amp; Co., Chartered Accountants</strong> (CA Membership No. 029910, Nandyal).</p>
-      <div class="overflow-x-auto rounded-sm border border-border mt-8">
-        <table class="w-full text-sm font-sans min-w-[700px]">
-          <thead>
-            <tr class="bg-primary text-white">
-              <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Fiscal Year</th>
-              <th class="text-right px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Total Inflows (₹)</th>
-              <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest hidden md:table-cell">Key Income Sources</th>
-              <th class="text-right px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Expenditure (₹)</th>
-              <th class="text-right px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest hidden lg:table-cell">Net Position</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-border">
-            <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2020–21</td><td class="px-5 py-4 text-right font-semibold text-primary">₹9,84,992</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Divya Foundation COVID Grant (₹8.32L) + Donations</td><td class="px-5 py-4 text-right text-secondary">₹9,82,257</td><td class="px-5 py-4 text-right text-red-500 hidden lg:table-cell">Deficit ₹10,065</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2021–22</td><td class="px-5 py-4 text-right font-semibold text-primary">₹64,675</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Member Contributions &amp; Public Donations</td><td class="px-5 py-4 text-right text-secondary">₹61,940</td><td class="px-5 py-4 text-right text-accent hidden lg:table-cell">Surplus +₹1,400</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2022–23</td><td class="px-5 py-4 text-right font-semibold text-primary">₹78,369</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Member Fees &amp; Community Contributions</td><td class="px-5 py-4 text-right text-secondary">₹74,234</td><td class="px-5 py-4 text-right text-red-500 hidden lg:table-cell">Deficit ₹143</td></tr>
-            <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2023–24</td><td class="px-5 py-4 text-right font-semibold text-primary">₹89,515</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Member Dues &amp; Public Donations</td><td class="px-5 py-4 text-right text-secondary">₹87,060</td><td class="px-5 py-4 text-right text-red-500 hidden lg:table-cell">Deficit ₹1,823</td></tr>
-            <tr class="tbl-row bg-accent/5"><td class="px-5 py-4 font-heading font-bold text-primary">FY 2024–25 <span class="text-accent text-xs">(FCRA)</span></td><td class="px-5 py-4 text-right font-bold text-accent">₹33,34,097</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Grace TPTC Foundation Foreign Grant (₹33.19L) + Interest</td><td class="px-5 py-4 text-right text-secondary">₹6,48,591</td><td class="px-5 py-4 text-right text-accent font-bold hidden lg:table-cell">Balance ₹26,85,506</td></tr>
-          </tbody>
-        </table>
+  <!-- ═══════════════════════════════
+       TAB PANEL 2: FINANCIALS (Hidden by default)
+  ═══════════════════════════════ -->
+  <section id="tab-financials" class="tab-panel hidden scroll-mt-32 md:scroll-mt-36 py-12 sm:py-16 md:py-20 bg-offwhite border-b border-border" aria-label="Five-Year Financial Performance">
+    <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+      
+      <!-- Horizontal 2-Column Card -->
+      <div class="border border-gray-300 hover:border-black transition-colors duration-300 bg-white flex flex-col lg:flex-row overflow-hidden group shadow-sm">
+        
+        <!-- Left Column: Image Placeholder -->
+        <div class="w-full lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 min-h-[300px] sm:min-h-[380px] lg:min-h-full flex flex-col items-center justify-center p-8 text-center border-b lg:border-b-0 lg:border-r border-gray-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border border-gray-300 shadow-sm flex items-center justify-center text-primary mb-3.5 group-hover:scale-105 transition-transform duration-300">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span class="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-primary">
+            Image Placeholder : Financial Performance &amp; Audits
+          </span>
+          <span class="text-[11px] text-secondary font-sans mt-1">Aspect Ratio 4:3 / 16:10</span>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full lg:w-1/2 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+          <div>
+            <h2 class="font-heading font-bold text-2xl sm:text-3xl text-primary leading-tight mb-4 tracking-tight">
+              Comprehensive Annual Chartered Audits &amp; Multi-Year Financial Performance
+            </h2>
+
+            <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed mb-6 text-justify">
+              Every single rupee received and disbursed is audited by independent Chartered Accountants, filed promptly with the Income Tax Department on Form 10B/ITR-7, and published openly for complete transparency.
+            </p>
+
+            <div class="mb-8">
+              <button type="button"
+                      data-open-drawer="financials"
+                      class="inline-flex items-center gap-2 font-heading font-bold text-xs sm:text-sm tracking-wider uppercase text-primary hover:text-accent border-b-2 border-primary hover:border-accent pb-1 transition-colors cursor-pointer group/link">
+                <span>Review 5-Year Balance Sheets &amp; Statements</span>
+                <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Highlight Buttons -->
+          <div class="pt-5 border-t border-gray-200">
+            <p class="font-heading font-bold text-xs uppercase tracking-wider text-secondary mb-3.5">
+              Financial Highlights
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button type="button" data-drawer-target="financials" data-highlight-id="drawer-fin-hl-0" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Independent CA Audits</span>
+              </button>
+
+              <button type="button" data-drawer-target="financials" data-highlight-id="drawer-fin-hl-1" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Form 10B &amp; ITR-7 Timely Filings</span>
+              </button>
+
+              <button type="button" data-drawer-target="financials" data-highlight-id="drawer-fin-hl-2" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8"/><path d="M12 16v-4"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Low Overhead Admin Ratio</span>
+              </button>
+
+              <button type="button" data-drawer-target="financials" data-highlight-id="drawer-fin-hl-3" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Multi-Year Financial Growth</span>
+              </button>
+
+              <button type="button" data-drawer-target="financials" data-highlight-id="drawer-fin-hl-4" class="drawer-trigger-btn sm:col-span-2 text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Public Transparency &amp; Open Records Access</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- FCRA Banking -->
-  <section class="py-16 md:py-20 border-b border-border">
-    <div class="max-w-content mx-auto px-4 md:px-8">
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">FCRA Banking Credentials</h2>
-      <p class="font-sans text-secondary text-base mb-8 max-w-prose">Under MHA guidelines, all foreign contributions must be wire-transferred exclusively into DWA's statutory FCRA account at State Bank of India, New Delhi.</p>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Account Name</p><p class="font-heading font-bold text-primary">Dalit Welfare Association</p></div>
-        <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Account Number (FCRA)</p><p class="font-heading font-bold text-primary font-mono">40108791616</p></div>
-        <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Account Type</p><p class="font-heading font-bold text-primary">FCRA Savings Account</p></div>
-        <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Bank</p><p class="font-heading font-bold text-primary">State Bank of India</p><p class="font-sans text-xs text-secondary mt-1">Main Branch, FCRA Cell (4th Floor)<br/>11 Sansad Marg, New Delhi – 110001</p></div>
-        <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">IFSC Code</p><p class="font-heading font-bold text-primary font-mono">SBIN0000691</p></div>
-        <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">SWIFT Code</p><p class="font-heading font-bold text-primary font-mono">SBININBB104</p></div>
+  <!-- ═══════════════════════════════
+       TAB PANEL 3: FCRA BANKING (Hidden by default)
+  ═══════════════════════════════ -->
+  <section id="tab-fcra-banking" class="tab-panel hidden scroll-mt-32 md:scroll-mt-36 py-12 sm:py-16 md:py-20 bg-offwhite border-b border-border" aria-label="FCRA Banking Credentials">
+    <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+      
+      <!-- Horizontal 2-Column Card -->
+      <div class="border border-gray-300 hover:border-black transition-colors duration-300 bg-white flex flex-col lg:flex-row overflow-hidden group shadow-sm">
+        
+        <!-- Left Column: Image Placeholder -->
+        <div class="w-full lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 min-h-[300px] sm:min-h-[380px] lg:min-h-full flex flex-col items-center justify-center p-8 text-center border-b lg:border-b-0 lg:border-r border-gray-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border border-gray-300 shadow-sm flex items-center justify-center text-primary mb-3.5 group-hover:scale-105 transition-transform duration-300">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="0"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <span class="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-primary">
+            Image Placeholder : FCRA Banking &amp; Foreign Remittance
+          </span>
+          <span class="text-[11px] text-secondary font-sans mt-1">Aspect Ratio 4:3 / 16:10</span>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full lg:w-1/2 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+          <div>
+            <h2 class="font-heading font-bold text-2xl sm:text-3xl text-primary leading-tight mb-4 tracking-tight">
+              Permanent FCRA Registration &amp; SBI New Delhi Main Branch Foreign Conduit
+            </h2>
+
+            <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed mb-6 text-justify">
+              In full compliance with the Foreign Contribution Regulation Amendment Act 2020, DWA operates an exclusive designated FCRA bank account at State Bank of India, Main Branch, 11 Sansad Marg, New Delhi 110001 for all foreign charitable remittances.
+            </p>
+
+            <div class="mb-8">
+              <button type="button"
+                      data-open-drawer="fcra-banking"
+                      class="inline-flex items-center gap-2 font-heading font-bold text-xs sm:text-sm tracking-wider uppercase text-primary hover:text-accent border-b-2 border-primary hover:border-accent pb-1 transition-colors cursor-pointer group/link">
+                <span>Verify International Wire Credentials</span>
+                <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Highlight Buttons -->
+          <div class="pt-5 border-t border-gray-200">
+            <p class="font-heading font-bold text-xs uppercase tracking-wider text-secondary mb-3.5">
+              FCRA Banking Credentials
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button type="button" data-drawer-target="fcra-banking" data-highlight-id="drawer-fcra-hl-0" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">MHA FCRA Permanent License</span>
+              </button>
+
+              <button type="button" data-drawer-target="fcra-banking" data-highlight-id="drawer-fcra-hl-1" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="0"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">SBI New Delhi Designated Branch</span>
+              </button>
+
+              <button type="button" data-drawer-target="fcra-banking" data-highlight-id="drawer-fcra-hl-2" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Global Wire SWIFT &amp; IFSC Conduit</span>
+              </button>
+
+              <button type="button" data-drawer-target="fcra-banking" data-highlight-id="drawer-fcra-hl-3" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Annual FC-4 Returns Submitted</span>
+              </button>
+
+              <button type="button" data-drawer-target="fcra-banking" data-highlight-id="drawer-fcra-hl-4" class="drawer-trigger-btn sm:col-span-2 text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Zero Inter-NGO Re-granting Compliance</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Third-party verification -->
-  <section class="py-16 md:py-20 bg-offwhite">
-    <div class="max-w-content mx-auto px-4 md:px-8">
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Third-Party Verification</h2>
-      <p class="font-sans text-secondary text-base mb-8 max-w-prose">DWA is listed and verified on all major NGO credibility and donation platforms. Click any badge to verify independently.</p>
-      <div class="flex flex-wrap gap-4">
-        <a href="https://give.do/discover/18G1/dalit-welfare-association/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 border-2 border-border bg-white rounded-sm px-5 py-4 hover:border-accent transition-colors">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <div><p class="font-heading font-bold text-primary text-sm">Give.do / Give India</p><p class="font-sans text-xs text-secondary">Verified NGO listing</p></div>
-        </a>
-        <a href="https://guidestarindia.org/GSN-9683/DWA" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 border-2 border-border bg-white rounded-sm px-5 py-4 hover:border-accent transition-colors">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <div><p class="font-heading font-bold text-primary text-sm">GuideStar India</p><p class="font-sans text-xs text-secondary">GSN-9683 · Transparency verified</p></div>
-        </a>
-        <a href="https://mygoodness.benevity.org/community/cause/356-5640831431326_7b83" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 border-2 border-border bg-white rounded-sm px-5 py-4 hover:border-accent transition-colors">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <div><p class="font-heading font-bold text-primary text-sm">Benevity</p><p class="font-sans text-xs text-secondary">Corporate giving verified</p></div>
-        </a>
-        <a href="https://ngodarpan.gov.in/#/search-ngo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 border-2 border-border bg-white rounded-sm px-5 py-4 hover:border-accent transition-colors">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <div><p class="font-heading font-bold text-primary text-sm">NGO DARPAN</p><p class="font-sans text-xs text-secondary">ID: AP/2021/0276162 · NITI Aayog</p></div>
-        </a>
+  <!-- ═══════════════════════════════
+       TAB PANEL 4: VERIFICATION (Hidden by default)
+  ═══════════════════════════════ -->
+  <section id="tab-verification" class="tab-panel hidden scroll-mt-32 md:scroll-mt-36 py-12 sm:py-16 md:py-20 bg-offwhite border-b border-border" aria-label="Third-Party Verification">
+    <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+      
+      <!-- Horizontal 2-Column Card -->
+      <div class="border border-gray-300 hover:border-black transition-colors duration-300 bg-white flex flex-col lg:flex-row overflow-hidden group shadow-sm">
+        
+        <!-- Left Column: Image Placeholder -->
+        <div class="w-full lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 min-h-[300px] sm:min-h-[380px] lg:min-h-full flex flex-col items-center justify-center p-8 text-center border-b lg:border-b-0 lg:border-r border-gray-200">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border border-gray-300 shadow-sm flex items-center justify-center text-primary mb-3.5 group-hover:scale-105 transition-transform duration-300">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <span class="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-primary">
+            Image Placeholder : Third-Party Badges &amp; Verification
+          </span>
+          <span class="text-[11px] text-secondary font-sans mt-1">Aspect Ratio 4:3 / 16:10</span>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full lg:w-1/2 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+          <div>
+            <h2 class="font-heading font-bold text-2xl sm:text-3xl text-primary leading-tight mb-4 tracking-tight">
+              Third-Party Due Diligence: GuideStar Platinum, Give.do &amp; Benevity Verified
+            </h2>
+
+            <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed mb-6 text-justify">
+              Rigorously vetted by premier national and global philanthropic evaluation portals. DWA holds the prestigious GuideStar India Platinum Seal of Transparency, is verified on Give.do, and is approved for corporate gift matching on Benevity.
+            </p>
+
+            <div class="mb-8">
+              <button type="button"
+                      data-open-drawer="verification"
+                      class="inline-flex items-center gap-2 font-heading font-bold text-xs sm:text-sm tracking-wider uppercase text-primary hover:text-accent border-b-2 border-primary hover:border-accent pb-1 transition-colors cursor-pointer group/link">
+                <span>View Accreditation Badges &amp; Reports</span>
+                <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Highlight Buttons -->
+          <div class="pt-5 border-t border-gray-200">
+            <p class="font-heading font-bold text-xs uppercase tracking-wider text-secondary mb-3.5">
+              Accreditation Highlights
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button type="button" data-drawer-target="verification" data-highlight-id="drawer-ver-hl-0" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">GuideStar India Platinum Seal</span>
+              </button>
+
+              <button type="button" data-drawer-target="verification" data-highlight-id="drawer-ver-hl-1" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Give.do Due Diligence Certified</span>
+              </button>
+
+              <button type="button" data-drawer-target="verification" data-highlight-id="drawer-ver-hl-2" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Benevity Global Corporate Portal</span>
+              </button>
+
+              <button type="button" data-drawer-target="verification" data-highlight-id="drawer-ver-hl-3" class="drawer-trigger-btn text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Credibility Alliance Standards</span>
+              </button>
+
+              <button type="button" data-drawer-target="verification" data-highlight-id="drawer-ver-hl-4" class="drawer-trigger-btn sm:col-span-2 text-left p-3 border border-gray-300 hover:border-black transition-colors duration-200 bg-white flex items-center gap-2.5 rounded-none cursor-pointer group/btn">
+                <div class="w-7 h-7 shrink-0 rounded-none bg-offwhite flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                </div>
+                <span class="font-heading font-semibold text-xs text-primary leading-tight">Verified Grassroots Community Reach</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="bg-primary text-white font-sans" role="contentinfo">
-  <div class="max-w-content mx-auto px-4 md:px-8 py-14">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div class="sm:col-span-2 lg:col-span-1">
-        <a href="index.html" class="inline-flex items-center gap-3 mb-4"><img src="logo.jpg" alt="DWA" width="40" height="40" loading="lazy" class="w-10 h-10 rounded-sm object-cover opacity-90"/><span class="font-heading font-bold text-base text-white leading-tight">Dalit Welfare<br/>Association</span></a>
-        <p class="text-gray-400 text-sm leading-relaxed mb-4 max-w-xs">A registered non-profit empowering marginalised communities in rural Kurnool since 1993.</p>
+<!-- ═══════════════════════════════
+     IMAGE CAROUSEL (10 Images, No Headings/Descriptions, Square Theme Buttons)
+═══════════════════════════════ -->
+<section class="w-full bg-[#000105] border-t border-gray-800 relative overflow-hidden" aria-label="Image Carousel">
+  <!-- Slides Container -->
+  <div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[480px] overflow-hidden select-none" id="image-carousel">
+    <div class="carousel-track flex h-full w-full transition-transform duration-500 ease-in-out">
+      <div class="w-full h-full shrink-0">
+        <img src="g1.jpg" alt="Dalit Welfare Association community initiative 1" class="w-full h-full object-cover object-center" loading="lazy" />
       </div>
-      <div>
-        <h3 class="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-4">Programs</h3>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="programs.html#womens-banking" class="hover:text-accent transition-colors">Women's Banking &amp; Entrepreneurship</a></li>
-          <li><a href="programs.html#education"      class="hover:text-accent transition-colors">Child Education Support</a></li>
-          <li><a href="programs.html#relief"         class="hover:text-accent transition-colors">Emergency &amp; Relief</a></li>
-        </ul>
+      <div class="w-full h-full shrink-0">
+        <img src="g2.jpg" alt="Dalit Welfare Association community initiative 2" class="w-full h-full object-cover object-center" loading="lazy" />
       </div>
-      <div>
-        <h3 class="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-4">Organisation</h3>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="about-us.html"       class="hover:text-accent transition-colors">Who We Are</a></li>
-          <li><a href="accountability.html" class="hover:text-accent transition-colors text-accent">Accountability</a></li>
-          <li><a href="donate.html"         class="hover:text-accent transition-colors">Donate</a></li>
-        </ul>
+      <div class="w-full h-full shrink-0">
+        <img src="g3.jpg" alt="Dalit Welfare Association community initiative 3" class="w-full h-full object-cover object-center" loading="lazy" />
       </div>
-      <div>
-        <h3 class="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-4">Contact</h3>
-        <address class="not-italic text-sm text-gray-400 leading-relaxed">
-          H.No. 4-84, S.C. Colony,<br/>Parnapalli Village, Kurnool District,<br/>AP — 518523<br/><br/>
-          <a href="tel:+918309744864" class="hover:text-accent transition-colors block mb-1">+91 83097 44864</a>
-          <a href="mailto:dalitwelfareassociation1@gmail.com" class="hover:text-accent transition-colors break-all">dalitwelfareassociation1@gmail.com</a>
-        </address>
+      <div class="w-full h-full shrink-0">
+        <img src="g4.jpg" alt="Dalit Welfare Association community initiative 4" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g5.jpg" alt="Dalit Welfare Association community initiative 5" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g6.jpg" alt="Dalit Welfare Association community initiative 6" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g7.jpg" alt="Dalit Welfare Association community initiative 7" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g8.jpg" alt="Dalit Welfare Association community initiative 8" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g9.jpg" alt="Dalit Welfare Association community initiative 9" class="w-full h-full object-cover object-center" loading="lazy" />
+      </div>
+      <div class="w-full h-full shrink-0">
+        <img src="g10.jpg" alt="Dalit Welfare Association community initiative 10" class="w-full h-full object-cover object-center" loading="lazy" />
       </div>
     </div>
+
+    <!-- Bottom Slider Controls: Square Shaped Buttons with Theme Colour (#4b61de) -->
+    <div class="absolute bottom-4 sm:bottom-6 left-0 right-0 flex items-center justify-center gap-2 sm:gap-2.5 z-20 pointer-events-auto px-4">
+      <!-- Prev Button (Small, Square, Theme Color) -->
+      <button type="button" class="carousel-prev w-7 h-7 sm:w-8 sm:h-8 bg-black/80 hover:bg-accent border border-accent text-accent hover:text-primary transition-all duration-200 rounded-none flex items-center justify-center cursor-pointer shadow-lg active:scale-95" aria-label="Previous image">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <!-- 10 Square Slider Indicator Buttons in Theme Color (#4b61de) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 bg-black/75 border border-gray-800 px-2.5 py-1.5 sm:px-3 sm:py-2">
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-accent rounded-none transition-all duration-200 cursor-pointer" data-slide="0" aria-label="Go to image 1"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="1" aria-label="Go to image 2"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="2" aria-label="Go to image 3"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="3" aria-label="Go to image 4"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="4" aria-label="Go to image 5"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="5" aria-label="Go to image 6"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="6" aria-label="Go to image 7"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="7" aria-label="Go to image 8"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="8" aria-label="Go to image 9"></button>
+        <button type="button" class="carousel-dot w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 border border-accent bg-transparent hover:bg-accent/40 rounded-none transition-all duration-200 cursor-pointer" data-slide="9" aria-label="Go to image 10"></button>
+      </div>
+
+      <!-- Next Button (Small, Square, Theme Color) -->
+      <button type="button" class="carousel-next w-7 h-7 sm:w-8 sm:h-8 bg-black/80 hover:bg-accent border border-accent text-accent hover:text-primary transition-all duration-200 rounded-none flex items-center justify-center cursor-pointer shadow-lg active:scale-95" aria-label="Next image">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
   </div>
-  <div class="border-t border-gray-800">
-    <div class="max-w-content mx-auto px-4 md:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
-      <p>&copy; <span id="year"></span> Dalit Welfare Association · Reg. 384/1993 · PAN AAKFD2353B · FCRA 010270166</p>
-      <p class="flex items-center gap-1.5"><span class="inline-block w-2 h-2 rounded-full bg-accent"></span>80G Tax-Deductible · NITI Aayog AP/2021/0276162</p>
+</section>
+
+<!-- ═══════════════════════════════
+     NEWSLETTER SUBSCRIPTION PART OF FOOTER
+═══════════════════════════════ -->
+<section class="bg-accent text-white py-10 md:py-14" aria-label="Newsletter Subscription">
+  <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-10">
+      
+      <!-- Left: Title & Description (Decreased Heading Size + Increased Space to Description) -->
+      <div class="max-w-xl text-left w-full">
+        <h3 class="font-heading font-black text-lg sm:text-xl md:text-2xl text-white uppercase tracking-wide leading-tight mb-3.5 sm:mb-4 md:mb-5">
+          NEWSLETTER SUBSCRIPTION
+        </h3>
+        <p class="font-sans text-white/90 text-sm sm:text-base leading-relaxed font-medium">
+          Receive quarterly impact briefings, audited field updates, and inspiring stories directly from Dalit communities and women entrepreneurs in rural Andhra Pradesh.
+        </p>
+      </div>
+
+      <!-- Right: Form (Sharp edged inputs & button) -->
+      <div class="w-full lg:max-w-lg">
+        <form class="newsletter-form flex flex-col sm:flex-row gap-2.5 sm:gap-3" onsubmit="event.preventDefault(); submitNewsletter(this);">
+          <input type="text" name="name" required placeholder="Your Name"
+                 class="w-full sm:w-1/3 px-4 py-3.5 bg-white text-primary placeholder:text-gray-500 rounded-none text-sm border-2 border-transparent focus:border-primary outline-none font-sans font-medium shadow-inner" />
+          <input type="email" name="email" required placeholder="Your Email Address"
+                 class="w-full sm:w-1/2 px-4 py-3.5 bg-white text-primary placeholder:text-gray-500 rounded-none text-sm border-2 border-transparent focus:border-primary outline-none font-sans font-medium shadow-inner" />
+          <button type="submit"
+                  class="w-full sm:w-auto px-6 py-3.5 bg-primary hover:bg-[#12161c] text-white font-heading font-bold text-xs uppercase tracking-widest rounded-none transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 shrink-0 cursor-pointer">
+            SUBMIT
+          </button>
+        </form>
+        <div class="newsletter-success hidden mt-3 p-2.5 bg-primary/10 border border-primary/20 rounded-none text-primary text-xs font-semibold flex items-center gap-2">
+          <span>✓</span> <span>Thank you for subscribing! You will receive our next quarterly update.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════
+     MAIN FOOTER
+═══════════════════════════════ -->
+<footer class="bg-[#030507] text-white font-sans border-t-2 border-accent" role="contentinfo">
+  <div class="max-w-content mx-auto px-4 sm:px-6 md:px-8 pt-12 md:pt-16 pb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+
+      <!-- Column 1: Organization, Central Office & Connect (5 cols on lg) -->
+      <div class="lg:col-span-5 pr-0 lg:pr-4">
+        <!-- Logo + Title (Sharp edged) -->
+        <div class="flex items-center gap-3.5 mb-5">
+          <div class="w-12 h-12 bg-white p-1 rounded-none border border-gray-700/80 shrink-0 flex items-center justify-center overflow-hidden">
+            <img src="logo.jpg" alt="Dalit Welfare Association logo" class="w-full h-full object-contain rounded-none" />
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg sm:text-xl md:text-2xl text-accent uppercase tracking-wide leading-tight">
+              DALIT WELFARE ASSOCIATION
+            </h3>
+            <p class="font-heading text-xs sm:text-sm text-white/80 uppercase tracking-widest font-semibold mt-0.5">
+              STRONGER TOGETHER
+            </p>
+          </div>
+        </div>
+
+        <!-- Description Paragraph -->
+        <p class="text-white text-sm md:text-[14.5px] leading-relaxed mb-6 font-normal">
+          Dalit Welfare Association (DWA) is a credible grassroots non-profit established in 1993, dedicated to rural dignity, education, and women's economic independence in Andhra Pradesh. We operate with strict statutory compliance, holding permanent FCRA certification (MHA Reg No. 010270166), 12A and 80G tax exemptions, and are officially verified on the global Benevity platform for transparent corporate matching and international donor integrity.
+        </p>
+
+        <!-- Registered Central Office -->
+        <div class="mb-6">
+          <div class="flex items-center gap-1.5 text-accent text-xs sm:text-sm font-heading font-bold uppercase tracking-wider mb-2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="2" x2="12" y2="5"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="5" y2="12"/>
+              <line x1="19" y1="12" x2="22" y2="12"/>
+            </svg>
+            <span>REGISTERED CENTRAL OFFICE</span>
+          </div>
+          <p class="text-white text-xs sm:text-sm leading-relaxed font-normal">
+            H.No. 4-84, S.C. Colony, Parnapalli Village &amp; Post, Bandi Atmakur Mandal, Kurnool District, Andhra Pradesh 518523, India.
+          </p>
+        </div>
+
+        <!-- Connect With Us (Sharp edged buttons, Theme Colour background on hover) -->
+        <div>
+          <p class="text-accent text-xs sm:text-sm font-heading font-bold uppercase tracking-wider mb-2.5">
+            CONNECT WITH US
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
+            <a href="https://id.linkedin.com/company/dalitwelfareassociation" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <span class="font-bold text-xs bg-white text-black px-1 rounded-none leading-none py-0.5 font-sans group-hover:bg-primary group-hover:text-white transition-colors">in</span>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:dalitwelfareassociation1@gmail.com"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <span>Email</span>
+            </a>
+            <a href="https://www.instagram.com/dwaindia" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0">
+                <rect x="2" y="2" width="20" height="20" rx="0" ry="0"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="tel:+918309744864"
+               class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#10141a] hover:bg-accent border border-gray-800 hover:border-accent text-white hover:text-primary text-xs font-medium rounded-none transition-colors group">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span>Phone</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Navigation & Credibility Portals side-by-side on Mobile/Tab, stacked on Desktop (3 cols on lg) -->
+      <div class="lg:col-span-3">
+        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-1 lg:gap-8">
+          
+          <!-- Navigation -->
+          <div>
+            <h4 class="text-accent text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider mb-2.5 sm:mb-3">
+              NAVIGATION
+            </h4>
+            <div class="space-y-1.5 sm:space-y-2">
+              <a href="about-us.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                About Us
+              </a>
+              <a href="programs.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                Programs
+              </a>
+              <a href="accountability.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                Accountability
+              </a>
+              <a href="donate.html" class="block text-white hover:text-accent text-xs sm:text-sm md:text-[15px] py-0.5 sm:py-1 transition-colors font-medium">
+                Donate
+              </a>
+            </div>
+          </div>
+
+          <!-- Verified Credibility Portals -->
+          <div>
+            <h4 class="text-accent text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider mb-2.5 sm:mb-3">
+              VERIFIED PORTALS
+            </h4>
+            <div class="space-y-1.5 sm:space-y-2">
+              <a href="https://give.do/discover/18G1/dalit-welfare-association/" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                GiveIndia / Give.do
+              </a>
+              <a href="https://guidestarindia.org/GSN-9683/DWA" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                GuideStar India (GSN-9683)
+              </a>
+              <a href="https://mygoodness.benevity.org/community/cause/356-5640831431326_7b83" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                Benevity Causes
+              </a>
+              <a href="https://ngodarpan.gov.in/#/search-ngo" target="_blank" rel="noopener noreferrer"
+                 class="block text-white hover:text-accent text-[11.5px] sm:text-xs md:text-[14px] py-0.5 sm:py-1 transition-colors leading-snug">
+                Goodstack / Goodera
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Column 3: Global Support & Giving + Benevity Card (4 cols on lg) -->
+      <div class="lg:col-span-4">
+        <!-- Heading with underline -->
+        <div class="mb-3">
+          <h4 class="text-accent text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider mb-2">
+            GLOBAL SUPPORT &amp; GIVING
+          </h4>
+          <div class="h-[2px] bg-accent w-full mb-4"></div>
+        </div>
+
+        <!-- Top Donate Button (Sharp edged, black background on hover, icon removed) -->
+        <a href="donate.html"
+           class="flex items-center justify-center gap-2 w-full bg-accent hover:bg-black text-primary hover:text-white font-heading font-black text-xs sm:text-sm uppercase tracking-wider py-3.5 px-4 rounded-none transition-all duration-200 shadow-md shadow-accent/20 border border-transparent hover:border-accent hover:scale-[1.01] active:scale-[0.99] mb-4 cursor-pointer">
+          <span class="font-bold">DONATE SECURELY NOW</span>
+          <span class="font-bold">→</span>
+        </a>
+
+        <!-- Benevity Card (Sharp edged) -->
+        <div class="border border-gray-800 bg-[#080c10] p-4 sm:p-5 rounded-none">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-accent text-xs sm:text-sm font-heading font-bold uppercase tracking-wider">
+              BENEVITY INTERNATIONAL GIVING
+            </span>
+            <span class="border border-accent/40 bg-[#141b3d] text-accent text-[9px] sm:text-[9.5px] font-heading font-bold uppercase tracking-widest px-2 py-0.5 rounded-none shrink-0">
+              VERIFIED CAUSE
+            </span>
+          </div>
+
+          <p class="text-white text-xs sm:text-[13px] leading-relaxed mb-3.5 font-normal">
+            Foreign contributors and global corporate employees (Google, Apple, Microsoft, SAP, Nike, Intel) can give directly via <strong class="text-accent font-semibold">Benevity</strong> (Cause ID: <span class="text-accent font-mono font-bold">356-5640831431326_7b83</span>).
+          </p>
+
+          <ul class="space-y-2 mb-4 text-xs sm:text-[12.5px] text-white/90 leading-normal">
+            <li class="flex items-start gap-2">
+              <span class="text-accent text-xs shrink-0 mt-0.5">✓</span>
+              <span>Tax-deductible receipts in local foreign currencies (USD, EUR, GBP, CAD).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent text-xs shrink-0 mt-0.5">✓</span>
+              <span>Automatic 1:1 or 2:1 corporate donation matching.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent text-xs shrink-0 mt-0.5">✓</span>
+              <span>Direct FCRA wire conduit via State Bank of India Main Branch, New Delhi.</span>
+            </li>
+          </ul>
+
+          <a href="https://mygoodness.benevity.org/community/cause/356-5640831431326_7b83" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-1.5 w-1/2 bg-accent hover:bg-black text-primary hover:text-white font-heading font-bold text-xs sm:text-sm py-2.5 px-2.5 sm:px-4 rounded-none transition-all duration-200 border border-transparent hover:border-accent text-center">
+            <span>Donate via Benevity Platform</span>
+            <span class="text-xs">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar: Group (Society No, Privacy, Refund) above Copyright note, centered -->
+    <div class="border-t border-gray-800/80 mt-10 md:mt-12 pt-6 sm:pt-8 pb-3 text-center">
+      <!-- Group: Registered Society Number, Privacy Policy, Refund Policy -->
+      <div class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-xs sm:text-sm text-white/90 mb-3">
+        <span class="text-white/80">Registered Society No. 384/1993</span>
+        <span class="text-gray-500">·</span>
+        <button type="button" onclick="openModal('privacy-modal')" class="text-white hover:text-accent font-medium underline-offset-4 hover:underline transition-colors cursor-pointer">
+          Privacy Policy
+        </button>
+        <span class="text-gray-500">·</span>
+        <button type="button" onclick="openModal('refund-modal')" class="text-white hover:text-accent font-medium underline-offset-4 hover:underline transition-colors cursor-pointer">
+          Refund Policy
+        </button>
+      </div>
+
+      <!-- Copyright note -->
+      <p class="text-xs sm:text-[13px] text-white/70 font-sans text-center">
+        &copy; 1993–<span id="year">2026</span> Dalit Welfare Association (DWA). All rights reserved.
+      </p>
     </div>
   </div>
 </footer>
 
+<!-- ═══════════════════════════════
+     RIGHT-SIDE DRAWERS (Accountability)
+═══════════════════════════════ -->
+<div id="unified-drawer-overlay"
+     class="fixed inset-0 z-[75] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300"
+     aria-hidden="true"></div>
+
+<!-- DRAWER 1: COMPLIANCE -->
+<aside id="drawer-compliance"
+       class="app-side-drawer fixed top-0 right-0 z-[80] h-full w-full max-w-2xl bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out will-change-transform overflow-hidden"
+       role="dialog" aria-modal="true" aria-labelledby="drawer-comp-title">
+  <div class="p-6 sm:p-7 border-b border-border bg-offwhite flex items-center justify-between gap-4 shrink-0">
+    <div>
+      <span class="inline-block text-[11px] font-heading font-bold uppercase tracking-wider text-accent mb-1">Legal Status</span>
+      <h3 id="drawer-comp-title" class="font-heading font-bold text-base sm:text-lg text-primary leading-snug">Statutory Registrations &amp; Compliance</h3>
+    </div>
+    <button type="button" data-close-drawer class="w-9 h-9 flex items-center justify-center border border-border hover:border-black text-secondary hover:text-primary transition-colors cursor-pointer shrink-0 rounded-none bg-white">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="p-6 sm:p-8 md:p-10 overflow-y-auto space-y-8 flex-grow">
+    <div class="border-b border-border pb-4">
+      <h3 class="font-heading font-bold text-xl sm:text-2xl text-primary leading-snug">Statutory Legal Identity, 12A/80G Tax Exemptions &amp; NITI Aayog Listing</h3>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Legal Incorporation</h4></div>
+      <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed text-justify">
+        Dalit Welfare Association (DWA) is legally registered under Andhra Pradesh Societies Registration Act (Regd No. 250 of 1993) dated 22 June 1993. The society is recognized as a non-profit voluntary agency with permanent tax exemptions under Sections 12A and 80G of the Indian Income Tax Act 1961.
+      </p>
+    </div>
+    <div class="space-y-4 pt-4 border-t border-border">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Statutory Identifiers</h4></div>
+      <div class="space-y-3">
+        <div id="drawer-comp-hl-0" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Society Reg No. 250 of 1993</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Incorporated at District Registrar of Assurances, Kurnool, Andhra Pradesh, with permanent non-profit bylaws.</p>
+        </div>
+        <div id="drawer-comp-hl-1" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Income Tax Section 12A</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Permanent registration granted under Section 12A exempting 100% of charitable surplus reinvested into social programs.</p>
+        </div>
+        <div id="drawer-comp-hl-2" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Section 80G Tax Deductible</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Valid perpetual 80G certificate entitling Indian individual and corporate taxpayers to 50% tax deductions on contributions.</p>
+        </div>
+        <div id="drawer-comp-hl-3" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>NITI Aayog NGO Darpan</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Verified and listed on Government of India NITI Aayog NGO Darpan portal (Unique ID: AP/2018/0187890).</p>
+        </div>
+        <div id="drawer-comp-hl-4" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Permanent PAN &amp; TAN Tax Identification</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Operating exclusively under official Society PAN and TAN accounts with automated electronic receipt generation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 sm:p-5 border-t border-border bg-offwhite shrink-0 flex items-center justify-between">
+    <span class="text-xs text-secondary font-sans font-medium">Dalit Welfare Association &bull; Accountability</span>
+    <button type="button" data-close-drawer class="px-5 py-2.5 bg-primary hover:bg-accent text-white hover:text-primary font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-none">Close</button>
+  </div>
+</aside>
+
+<!-- DRAWER 2: FINANCIALS -->
+<aside id="drawer-financials"
+       class="app-side-drawer fixed top-0 right-0 z-[80] h-full w-full max-w-2xl bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out will-change-transform overflow-hidden"
+       role="dialog" aria-modal="true" aria-labelledby="drawer-fin-title">
+  <div class="p-6 sm:p-7 border-b border-border bg-offwhite flex items-center justify-between gap-4 shrink-0">
+    <div>
+      <span class="inline-block text-[11px] font-heading font-bold uppercase tracking-wider text-accent mb-1">Audit Reports</span>
+      <h3 id="drawer-fin-title" class="font-heading font-bold text-base sm:text-lg text-primary leading-snug">Five-Year Financial Performance</h3>
+    </div>
+    <button type="button" data-close-drawer class="w-9 h-9 flex items-center justify-center border border-border hover:border-black text-secondary hover:text-primary transition-colors cursor-pointer shrink-0 rounded-none bg-white">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="p-6 sm:p-8 md:p-10 overflow-y-auto space-y-8 flex-grow">
+    <div class="border-b border-border pb-4">
+      <h3 class="font-heading font-bold text-xl sm:text-2xl text-primary leading-snug">Comprehensive Annual Chartered Audits &amp; Multi-Year Financial Performance</h3>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Fiduciary Principles</h4></div>
+      <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed text-justify">
+        DWA exercises stringent financial discipline. Independent Chartered Accountants audit all books of accounts annually, generating detailed balance sheets, receipts & payments accounts, and income & expenditure statements submitted to regulatory authorities.
+      </p>
+    </div>
+    <div class="space-y-4 pt-4 border-t border-border">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Financial Highlights</h4></div>
+      <div class="space-y-3">
+        <div id="drawer-fin-hl-0" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Independent CA Audits</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Full statutory audit conducted annually by ICAI-licensed Chartered Accountants with unqualified audit opinions.</p>
+        </div>
+        <div id="drawer-fin-hl-1" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Form 10B &amp; ITR-7 Timely Filings</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">100% on-time electronic filing with the Central Board of Direct Taxes (CBDT) maintaining pristine tax standing.</p>
+        </div>
+        <div id="drawer-fin-hl-2" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Low Overhead Admin Ratio</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Over 88% of funds deploy directly to program execution, maintaining strict caps on operational and fundraising expenses.</p>
+        </div>
+        <div id="drawer-fin-hl-3" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Multi-Year Financial Growth</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Continuous program spend expansion over the past five fiscal years demonstrating sustainable operational scale.</p>
+        </div>
+        <div id="drawer-fin-hl-4" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Public Transparency &amp; Open Records Access</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Audited statements and annual impact summaries are available to donors and institutional partners on written request.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 sm:p-5 border-t border-border bg-offwhite shrink-0 flex items-center justify-between">
+    <span class="text-xs text-secondary font-sans font-medium">Dalit Welfare Association &bull; Accountability</span>
+    <button type="button" data-close-drawer class="px-5 py-2.5 bg-primary hover:bg-accent text-white hover:text-primary font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-none">Close</button>
+  </div>
+</aside>
+
+<!-- DRAWER 3: FCRA BANKING -->
+<aside id="drawer-fcra-banking"
+       class="app-side-drawer fixed top-0 right-0 z-[80] h-full w-full max-w-2xl bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out will-change-transform overflow-hidden"
+       role="dialog" aria-modal="true" aria-labelledby="drawer-fcra-title">
+  <div class="p-6 sm:p-7 border-b border-border bg-offwhite flex items-center justify-between gap-4 shrink-0">
+    <div>
+      <span class="inline-block text-[11px] font-heading font-bold uppercase tracking-wider text-accent mb-1">Foreign Inflow</span>
+      <h3 id="drawer-fcra-title" class="font-heading font-bold text-base sm:text-lg text-primary leading-snug">FCRA Banking Credentials</h3>
+    </div>
+    <button type="button" data-close-drawer class="w-9 h-9 flex items-center justify-center border border-border hover:border-black text-secondary hover:text-primary transition-colors cursor-pointer shrink-0 rounded-none bg-white">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="p-6 sm:p-8 md:p-10 overflow-y-auto space-y-8 flex-grow">
+    <div class="border-b border-border pb-4">
+      <h3 class="font-heading font-bold text-xl sm:text-2xl text-primary leading-snug">Permanent FCRA Registration &amp; SBI New Delhi Main Branch Foreign Conduit</h3>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">MHA Authorization</h4></div>
+      <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed text-justify">
+        Under Section 11 of the Foreign Contribution (Regulation) Act 2010, DWA is duly authorized by the Ministry of Home Affairs to accept cross-border philanthropic grants and individual donations for economic, educational, and social welfare programs.
+      </p>
+    </div>
+    <div class="space-y-4 pt-4 border-t border-border">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Banking Credentials</h4></div>
+      <div class="space-y-3">
+        <div id="drawer-fcra-hl-0" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>MHA FCRA Permanent License</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Permanent registration granted under the FCRA Directorate, Ministry of Home Affairs, Government of India.</p>
+        </div>
+        <div id="drawer-fcra-hl-1" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>SBI New Delhi Designated Branch</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Primary receiving account stationed at State Bank of India, Main Branch, 11 Sansad Marg, New Delhi 110001.</p>
+        </div>
+        <div id="drawer-fcra-hl-2" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Global Wire SWIFT &amp; IFSC Conduit</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Direct international wire conduits configured for USD, EUR, GBP, CAD, and AUD institutional transfers.</p>
+        </div>
+        <div id="drawer-fcra-hl-3" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Annual FC-4 Returns Submitted</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Detailed annual audited foreign contribution statements submitted digitally on Form FC-4 without interruption.</p>
+        </div>
+        <div id="drawer-fcra-hl-4" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Zero Inter-NGO Re-granting Compliance</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">All foreign contributions are deployed directly by DWA grassroots workers without sub-granting to external entities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 sm:p-5 border-t border-border bg-offwhite shrink-0 flex items-center justify-between">
+    <span class="text-xs text-secondary font-sans font-medium">Dalit Welfare Association &bull; Accountability</span>
+    <button type="button" data-close-drawer class="px-5 py-2.5 bg-primary hover:bg-accent text-white hover:text-primary font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-none">Close</button>
+  </div>
+</aside>
+
+<!-- DRAWER 4: VERIFICATION -->
+<aside id="drawer-verification"
+       class="app-side-drawer fixed top-0 right-0 z-[80] h-full w-full max-w-2xl bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out will-change-transform overflow-hidden"
+       role="dialog" aria-modal="true" aria-labelledby="drawer-ver-title">
+  <div class="p-6 sm:p-7 border-b border-border bg-offwhite flex items-center justify-between gap-4 shrink-0">
+    <div>
+      <span class="inline-block text-[11px] font-heading font-bold uppercase tracking-wider text-accent mb-1">Due Diligence</span>
+      <h3 id="drawer-ver-title" class="font-heading font-bold text-base sm:text-lg text-primary leading-snug">Third-Party Verification &amp; Ratings</h3>
+    </div>
+    <button type="button" data-close-drawer class="w-9 h-9 flex items-center justify-center border border-border hover:border-black text-secondary hover:text-primary transition-colors cursor-pointer shrink-0 rounded-none bg-white">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="p-6 sm:p-8 md:p-10 overflow-y-auto space-y-8 flex-grow">
+    <div class="border-b border-border pb-4">
+      <h3 class="font-heading font-bold text-xl sm:text-2xl text-primary leading-snug">Third-Party Due Diligence: GuideStar Platinum, Give.do &amp; Benevity Verified</h3>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Accreditation Standards</h4></div>
+      <p class="font-sans text-secondary text-sm sm:text-base leading-relaxed text-justify">
+        External verification validates our commitment to transparency. DWA is subject to comprehensive legal, financial, and operational reviews by independent vetting organizations to give donors complete confidence.
+      </p>
+    </div>
+    <div class="space-y-4 pt-4 border-t border-border">
+      <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-accent inline-block"></span><h4 class="font-heading font-bold text-base sm:text-lg text-primary uppercase tracking-wide">Vetting Badges</h4></div>
+      <div class="space-y-3">
+        <div id="drawer-ver-hl-0" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>GuideStar India Platinum Seal</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Highest transparency tier on India's premier voluntary sector information repository (GSN-9683).</p>
+        </div>
+        <div id="drawer-ver-hl-1" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Give.do Due Diligence Certified</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Verified by Give.do (formerly GiveIndia) for compliance with strict fiduciary and field accountability norms.</p>
+        </div>
+        <div id="drawer-ver-hl-2" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Benevity Global Corporate Portal</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Approved charity partner on Benevity enabling corporate matching gifts from Fortune 500 enterprise employees.</p>
+        </div>
+        <div id="drawer-ver-hl-3" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Credibility Alliance Standards</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Adhering to ethical fundraising codes, board rotation norms, and community governance standards.</p>
+        </div>
+        <div id="drawer-ver-hl-4" class="p-4 border border-border bg-offwhite transition-all duration-300">
+          <h5 class="font-heading font-bold text-sm text-primary mb-1 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary inline-block"></span>Verified Grassroots Community Reach</h5>
+          <p class="font-sans text-secondary text-xs sm:text-sm leading-relaxed">Field-verified impact documentation demonstrating 30+ years of uninterrupted grassroots Dalit empowerment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 sm:p-5 border-t border-border bg-offwhite shrink-0 flex items-center justify-between">
+    <span class="text-xs text-secondary font-sans font-medium">Dalit Welfare Association &bull; Accountability</span>
+    <button type="button" data-close-drawer class="px-5 py-2.5 bg-primary hover:bg-accent text-white hover:text-primary font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-none">Close</button>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════
+     PRIVACY POLICY MODAL
+═══════════════════════════════ -->
+<div id="privacy-modal" class="fixed inset-0 z-[80] bg-black/75 opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+  <div class="bg-white text-primary w-full max-w-2xl max-h-[85vh] rounded-sm shadow-2xl flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border bg-offwhite">
+      <h3 id="privacy-title" class="font-heading font-bold text-lg md:text-xl text-primary">Privacy Policy</h3>
+      <button onclick="closeModal('privacy-modal')" class="text-secondary hover:text-accent p-1 text-2xl leading-none cursor-pointer" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="p-6 overflow-y-auto font-sans text-sm text-secondary space-y-4 leading-relaxed">
+      <p class="font-medium text-primary">Last updated: January 2026</p>
+      <p>The <strong>Dalit Welfare Association (DWA)</strong> is firmly committed to protecting the privacy, confidentiality, and security of donors, beneficiaries, volunteers, and website visitors.</p>
+      <h4 class="font-heading font-bold text-primary text-base">1. Information Collection</h4>
+      <p>We only collect personal information (name, email address, postal address, PAN number for 80G tax receipts, phone number) when voluntarily submitted by donors or newsletter subscribers.</p>
+      <h4 class="font-heading font-bold text-primary text-base">2. Use of Information</h4>
+      <p>Collected details are strictly used to issue official statutory tax-deductible receipts, comply with Government of India (Income Tax Dept &amp; Ministry of Home Affairs FCRA) regulations, and deliver requested program updates. DWA <strong>never sells, trades, rents, or exchanges donor data</strong> with third parties.</p>
+      <h4 class="font-heading font-bold text-primary text-base">3. Data Security</h4>
+      <p>All donation transactions processed through accredited portals (Give.do, Benevity) employ industry-standard 256-bit SSL encryption. We maintain appropriate physical, electronic, and procedural safeguards.</p>
+      <h4 class="font-heading font-bold text-primary text-base">4. Contact Officer</h4>
+      <p>For any queries or data removal requests, please write to our Project Officer at <a href="mailto:dalitwelfareassociation1@gmail.com" class="text-accent underline font-semibold">dalitwelfareassociation1@gmail.com</a>.</p>
+    </div>
+    <div class="px-6 py-3 border-t border-border bg-offwhite text-right">
+      <button onclick="closeModal('privacy-modal')" class="px-5 py-2 bg-primary hover:bg-[#12161c] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors cursor-pointer">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     REFUND POLICY MODAL
+═══════════════════════════════ -->
+<div id="refund-modal" class="fixed inset-0 z-[80] bg-black/75 opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="refund-title">
+  <div class="bg-white text-primary w-full max-w-2xl max-h-[85vh] rounded-sm shadow-2xl flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border bg-offwhite">
+      <h3 id="refund-title" class="font-heading font-bold text-lg md:text-xl text-primary">Donation Refund &amp; Cancellation Policy</h3>
+      <button onclick="closeModal('refund-modal')" class="text-secondary hover:text-accent p-1 text-2xl leading-none cursor-pointer" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="p-6 overflow-y-auto font-sans text-sm text-secondary space-y-4 leading-relaxed">
+      <p class="font-medium text-primary">Last updated: January 2026</p>
+      <p>The <strong>Dalit Welfare Association (DWA)</strong> is a non-profit voluntary society registered under the Societies Registration Act XXI of 1860. All contributions directly support charitable programs for rural poverty alleviation, women’s livelihood, and child education.</p>
+      <h4 class="font-heading font-bold text-primary text-base">1. Voluntary Contributions</h4>
+      <p>Donations once made are voluntary and non-refundable once statutory tax exemption certificates (80G receipts or FCRA returns) are generated.</p>
+      <h4 class="font-heading font-bold text-primary text-base">2. Erroneous or Duplicate Donations</h4>
+      <p>If an erroneous deduction, technical duplicate transaction, or accidental charge occurs, the donor must notify DWA within <strong>7 working days</strong> of the transaction date. Please submit the transaction reference, payment screenshot, donor name, and banking proof to <a href="mailto:dalitwelfareassociation1@gmail.com" class="text-accent underline font-semibold">dalitwelfareassociation1@gmail.com</a>.</p>
+      <h4 class="font-heading font-bold text-primary text-base">3. Refund Processing</h4>
+      <p>Upon verification, approved refunds will be credited back to the original source account/card via the banking channel within 10 to 14 business days, in compliance with applicable banking and RBI regulations.</p>
+    </div>
+    <div class="px-6 py-3 border-t border-border bg-offwhite text-right">
+      <button onclick="closeModal('refund-modal')" class="px-5 py-2 bg-primary hover:bg-[#12161c] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors cursor-pointer">Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  /* ── Safe Year update ── */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    /* ── Auto-hide header & second navigation tab menu on scroll ── */
   const header = document.getElementById('site-header');
-  let lastY = window.scrollY, ticking = false;
-  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(() => { const y = window.scrollY; if (y > lastY && y > 90) header.classList.add('hide'); else header.classList.remove('hide'); header.classList.toggle('shadow', y > 10); lastY = y; ticking = false; }); ticking = true; } }, { passive: true });
-  const hamburger = document.getElementById('hamburger'), mobileMenu = document.getElementById('mobile-menu'), overlay = document.getElementById('mobile-overlay'), closeMenuBtn = document.getElementById('close-menu');
-  function openMenu() { mobileMenu.classList.remove('translate-x-full'); overlay.classList.remove('opacity-0','pointer-events-none'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
-  function closeMenu() { mobileMenu.classList.add('translate-x-full'); overlay.classList.add('opacity-0','pointer-events-none'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
-  hamburger.addEventListener('click', openMenu); closeMenuBtn.addEventListener('click', closeMenu); overlay.addEventListener('click', closeMenu);
-  const searchBtn = document.getElementById('search-btn'), searchPopup = document.getElementById('search-popup'), closeSearch = document.getElementById('close-search'), searchInput = document.getElementById('search-input'), items = document.querySelectorAll('.s-item-wrap'), noResults = document.getElementById('no-results');
-  function openSearch() { searchPopup.classList.remove('opacity-0','pointer-events-none'); document.body.style.overflow='hidden'; setTimeout(() => searchInput.focus(), 50); }
-  function closeSearchFn() { searchPopup.classList.add('opacity-0','pointer-events-none'); document.body.style.overflow=''; searchInput.value=''; items.forEach(i => i.style.display=''); noResults.classList.add('hidden'); }
-  searchBtn.addEventListener('click', openSearch); closeSearch.addEventListener('click', closeSearchFn); searchPopup.addEventListener('click', (e) => { if (e.target === searchPopup) closeSearchFn(); });
-  searchInput.addEventListener('input', () => { const q = searchInput.value.toLowerCase().trim(); let v = 0; items.forEach(item => { const show = !q || item.textContent.toLowerCase().includes(q) || (item.dataset.kw||'').includes(q); item.style.display = show ? '' : 'none'; if (show) v++; }); noResults.classList.toggle('hidden', v > 0 || !q); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeSearchFn(); } });
+  const pageTabs = document.getElementById('page-tabs');
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const headerH = header ? header.offsetHeight : 64;
+
+        // 1. Site header auto-hide logic
+        if (y > 70) {
+          if (y > lastY + 4) {
+            if (header) header.classList.add('hide');
+          } else if (y < lastY - 4) {
+            if (header) header.classList.remove('hide');
+          }
+        } else {
+          if (header) header.classList.remove('hide');
+        }
+
+        // 2. Page tabs smart scroll: does NOT move before hero section;
+        // scrolls away when at top edge, and reappears immediately when scrolling up.
+        if (pageTabs) {
+          const heroSec = document.querySelector('section[aria-label="Hero Introduction"]');
+          const heroBottom = heroSec ? (heroSec.offsetTop + heroSec.offsetHeight) : 600;
+          const stickyThreshold = heroBottom - headerH - 12;
+
+          if (y < stickyThreshold) {
+            // Above or within hero section: remains in natural static position
+            pageTabs.classList.remove('hide');
+          } else {
+            // Once past hero section at top edge:
+            if (y > lastY + 3) {
+              // Scrolling down: hide away
+              pageTabs.classList.add('hide');
+            } else if (y < lastY - 2) {
+              // Scrolling up: re-appear immediately
+              pageTabs.classList.remove('hide');
+            }
+          }
+        }
+
+        if (header) header.classList.toggle('shadow', y > 10);
+        lastY = y <= 0 ? 0 : y;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ── Mobile & Tab Right Side Menu ── */
+  const hamburger    = document.getElementById('hamburger');
+  const mobileMenu   = document.getElementById('mobile-menu');
+  const overlay      = document.getElementById('mobile-overlay');
+  const closeMenuBtn = document.getElementById('close-menu');
+
+  function openMenu() {
+    if (mobileMenu) mobileMenu.classList.add('open');
+    if (overlay)    overlay.classList.add('open');
+    if (hamburger) {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    if (overlay)    overlay.classList.remove('open');
+    if (hamburger) {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger)    hamburger.addEventListener('click', openMenu);
+  if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+  if (overlay)      overlay.addEventListener('click', closeMenu);
+
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  /* ── Search popup ── */
+  const searchBtn    = document.getElementById('search-btn');
+  const searchPopup  = document.getElementById('search-popup');
+  const closeSearch  = document.getElementById('close-search');
+  const searchInput  = document.getElementById('search-input');
+  const items        = document.querySelectorAll('.s-item-wrap');
+  const noResults    = document.getElementById('no-results');
+
+  function openSearch() {
+    if (!searchPopup) return;
+    searchPopup.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+    if (searchInput) setTimeout(() => searchInput.focus(), 50);
+  }
+  function closeSearchFn() {
+    if (!searchPopup) return;
+    searchPopup.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+    if (searchInput) searchInput.value = '';
+    items.forEach(i => i.style.display = '');
+    if (noResults) noResults.classList.add('hidden');
+  }
+
+  if (searchBtn)   searchBtn.addEventListener('click', openSearch);
+  if (closeSearch) closeSearch.addEventListener('click', closeSearchFn);
+  if (searchPopup) {
+    searchPopup.addEventListener('click', (e) => {
+      if (e.target === searchPopup) closeSearchFn();
+    });
+  }
+
+  /* Live filter */
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      let visible = 0;
+      items.forEach(item => {
+        const kw   = item.dataset.kw || '';
+        const text = item.textContent.toLowerCase();
+        const show = !q || text.includes(q) || kw.includes(q);
+        item.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (noResults) noResults.classList.toggle('hidden', visible > 0 || !q);
+    });
+  }
+
+  /* ── Policy Modals (Privacy & Refund) ── */
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+    }
+  }
+  ['privacy-modal', 'refund-modal'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) closeModal(id);
+      });
+    }
+  });
+
+  /* ── Newsletter Form Handler ── */
+  function submitNewsletter(form) {
+    const successMsg = form.parentElement.querySelector('.newsletter-success');
+    if (successMsg) {
+      successMsg.classList.remove('hidden');
+      form.reset();
+      setTimeout(() => {
+        successMsg.classList.add('hidden');
+      }, 5000);
+    }
+  }
+
+  /* ── ESC closes all popups ── */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMenu();
+      closeSearchFn();
+      closeModal('privacy-modal');
+      closeModal('refund-modal');
+    }
+  });
+
+  /* ── 10-Image Sliding Carousel Logic ── */
+  const carouselTrack = document.querySelector('.carousel-track');
+  const carouselDots  = document.querySelectorAll('.carousel-dot');
+  const prevBtn       = document.querySelector('.carousel-prev');
+  const nextBtn       = document.querySelector('.carousel-next');
+  const carouselContainer = document.getElementById('image-carousel');
+
+  if (carouselTrack && carouselDots.length > 0) {
+    let currentSlide = 0;
+    const totalSlides = carouselDots.length;
+    let autoSlideTimer = null;
+
+    function goToSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      carouselTrack.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      carouselDots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.classList.add('bg-accent');
+          dot.classList.remove('bg-transparent');
+        } else {
+          dot.classList.remove('bg-accent');
+          dot.classList.add('bg-transparent');
+        }
+      });
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      autoSlideTimer = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoSlide() {
+      if (autoSlideTimer) {
+        clearInterval(autoSlideTimer);
+        autoSlideTimer = null;
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoSlide();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoSlide();
+      });
+    }
+
+    carouselDots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        startAutoSlide();
+      });
+    });
+
+    if (carouselContainer) {
+      carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+      carouselContainer.addEventListener('mouseleave', startAutoSlide);
+
+      // Touch / swipe support
+      let touchStartX = 0;
+      carouselContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoSlide();
+      }, { passive: true });
+
+      carouselContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) nextSlide();
+          else prevSlide();
+        }
+        startAutoSlide();
+      }, { passive: true });
+    }
+
+    startAutoSlide();
+  }
+
+  
+  /* ── Accountability Tab Switching & Right-Side Drawers ── */
+  const tabBtns = document.querySelectorAll('.page-tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const drawerOverlay = document.getElementById('unified-drawer-overlay');
+  const allDrawers = document.querySelectorAll('.app-side-drawer');
+
+  function switchTab(tabId, scrollIntoView = false) {
+    // 1. Update button classes
+    tabBtns.forEach(btn => {
+      const isTarget = btn.getAttribute('data-tab-target') === tabId;
+      if (isTarget) {
+        btn.classList.add('active', 'bg-accent', 'border-accent');
+        btn.classList.remove('bg-black', 'border-black');
+      } else {
+        btn.classList.remove('active', 'bg-accent', 'border-accent');
+        btn.classList.add('bg-black', 'border-black');
+      }
+    });
+
+    // 2. Show selected panel, hide others
+    tabPanels.forEach(panel => {
+      if (panel.id === 'tab-' + tabId) {
+        panel.classList.remove('hidden');
+        panel.classList.add('block');
+      } else {
+        panel.classList.add('hidden');
+        panel.classList.remove('block');
+      }
+    });
+
+    // 3. Optional smooth scroll to tab area
+    if (scrollIntoView) {
+      const tabsNav = document.getElementById('page-tabs');
+      if (tabsNav) {
+        const header = document.getElementById('site-header');
+        const headerH = header ? header.offsetHeight : 64;
+        const targetY = tabsNav.getBoundingClientRect().top + window.scrollY - headerH;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    }
+  }
+
+  // Bind tab click events
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab-target');
+      switchTab(tabId, true);
+    });
+  });
+
+  // Drawer Open/Close functions
+  function openAppDrawer(drawerId, highlightId = null) {
+    const drawer = document.getElementById('drawer-' + drawerId);
+    if (!drawer || !drawerOverlay) return;
+
+    allDrawers.forEach(d => d.classList.add('translate-x-full'));
+
+    drawer.classList.remove('translate-x-full');
+    drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+
+    if (highlightId) {
+      const hlEl = document.getElementById(highlightId);
+      if (hlEl) {
+        setTimeout(() => {
+          hlEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          hlEl.classList.add('border-accent', 'bg-accent/10');
+          setTimeout(() => {
+            hlEl.classList.remove('border-accent', 'bg-accent/10');
+          }, 2000);
+        }, 320);
+      }
+    }
+  }
+
+  function closeAllAppDrawers() {
+    allDrawers.forEach(d => d.classList.add('translate-x-full'));
+    if (drawerOverlay) drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+  }
+
+  // Bind drawer triggers
+  document.querySelectorAll('[data-open-drawer]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dId = btn.getAttribute('data-open-drawer');
+      openAppDrawer(dId);
+    });
+  });
+
+  document.querySelectorAll('.drawer-trigger-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dId = btn.getAttribute('data-drawer-target');
+      const hlId = btn.getAttribute('data-highlight-id');
+      openAppDrawer(dId, hlId);
+    });
+  });
+
+  document.querySelectorAll('[data-close-drawer]').forEach(btn => {
+    btn.addEventListener('click', closeAllAppDrawers);
+  });
+
+  if (drawerOverlay) drawerOverlay.addEventListener('click', closeAllAppDrawers);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllAppDrawers();
+  });
+
+  // Handle URL hash on load
+  const initialHash = window.location.hash.replace('#', '');
+  const validTabs = ['compliance', 'financials', 'fcra-banking', 'verification'];
+  const aliasMap = { 'problem': 'compliance', 'plan': 'financials', 'people': 'fcra-banking', 'credentials': 'verification' };
+  const targetTab = validTabs.includes(initialHash) ? initialHash : aliasMap[initialHash];
+  if (targetTab) {
+    switchTab(targetTab, false);
+  }
+
 </script>
 </body>
 </html>

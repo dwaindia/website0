@@ -1,0 +1,32 @@
+---
+
+Design inspiration: https://www.opensocietyfoundations.org/
+
+
+---
+
+Role & Goal:
+You are an expert Senior Frontend Developer and UI/UX Designer specializing in accessible, editorial-grade web design. Your goal is to redesign and structure my organization's website into a pure, lightning-fast static webpage using semantic HTML5, modern Tailwind CSS (via official script/CDN or clean utility classes), and lightweight Vanilla JavaScript.
+
+Strict Architecture Constraint:
+- DO NOT use React, Next.js, Node.js packages, npm scripts, or heavy frameworks.
+- The output must be directly viewable by opening the `.html` file in a browser, ready for zero-maintenance hosting on static platforms (e.g., GitHub Pages / Cloudflare Pages).
+
+---
+
+Performance, SEO & Code Requirements:
+1. Pure Semantic HTML: Use proper tags (`<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<footer>`).
+2. Images: Write responsive `<img>` tags utilizing WebP formats, explicit `width`/`height` attributes, and `loading="lazy"` (except for above-the-fold hero assets which should have `fetchpriority="high"`).
+3. Schema & SEO: Include full NonProfit/NGO JSON-LD Schema markup in the `<head>` alongside complete OpenGraph and Twitter meta tags.
+4. Clean Scripts: Any interactivity (mobile drawer toggle, scroll interactions) must be written in minimal, vanilla `<script>` without external libraries.
+
+---
+
+Colour Pallete;
+1. Theme colours: primary - #2cc980, secondary - #4b61de, third - #f5c21b.
+2. Font Colours: primary - #000105, secondary - #3d3d3d,
+
+---
+
+Fonts Style:
+1. Headings: Roboto, Body: Inter 

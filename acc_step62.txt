@@ -1,0 +1,94 @@
+Created At: 2026-11-09T20:29:42+05:30
+Completed At: 2026-11-09T20:29:42+05:30
+Showing lines 270-360 of 1010
+270:     <div class="w-full lg:w-1/2 relative overflow-hidden min-h-[320px] sm:min-h-[400px] lg:min-h-full">
+271:       <img
+272:           src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1400&q=80"
+273:           alt="Official audited reports and statutory financial governance documents"
+274:           class="w-full h-full object-cover object-center"
+275:           loading="eager"
+276:           fetchpriority="high"
+277:         />
+278:     </div></section>
+279: 
+280:   <!-- Legal Identifiers -->
+281:   <section class="py-16 md:py-20 border-b border-border">
+282:     <div class="max-w-content mx-auto px-4 md:px-8">
+283:       <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Legal Identifiers &amp; Statutory Compliance</h2>
+284:       <p class="font-sans text-secondary text-base mb-8 max-w-prose">DWA maintains a complete, audited statutory compliance profile across federal Indian taxation and regulatory authorities.</p>
+285:       <div class="overflow-x-auto rounded-sm border border-border">
+286:         <table class="w-full text-sm font-sans min-w-[600px]">
+287:           <thead>
+288:             <tr class="bg-primary text-white">
+289:               <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Regulatory Authority / Credential</th>
+290:               <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Registration / URN</th>
+291:               <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Validity / Details</th>
+292:             </tr>
+293:           </thead>
+294:           <tbody class="divide-y divide-border">
+295:             <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Society Registration Act XXI of 1860</td><td class="px-5 py-4 font-mono text-accent">384/1993</td><td class="px-5 py-4 text-secondary">District Registrar, Kurnool · Issued June 22, 1993</td></tr>
+296:             <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Permanent Account Number (PAN)</td><td class="px-5 py-4 font-mono text-accent">AAKFD2353B</td><td class="px-5 py-4 text-secondary">Income Tax Department, Govt. of India</td></tr>
+297:             <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Foreign Contribution Regulation Act (FCRA)</td><td class="px-5 py-4 font-mono text-accent">010270166</td><td class="px-5 py-4 text-secondary">MHA · Renewed July 7, 2023 · Valid Oct 2023 – Sept 2028</td></tr>
+298:             <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Income Tax Section 12A</td><td class="px-5 py-4 font-mono text-accent text-xs">AAKFD2353BE20214</td><td class="px-5 py-4 text-secondary">Form 10AC · AY 2022-23 to 2024-25 · May 28, 2021</td></tr>
+299:             <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">Income Tax Section 80G Approval</td><td class="px-5 py-4 font-mono text-accent text-xs">AAKFD2353BF20216</td><td class="px-5 py-4 text-secondary">Form 10AC · AY 2021-22 to 2024-25 · Sept 24, 2021</td></tr>
+300:             <tr class="tbl-row"><td class="px-5 py-4 text-primary font-semibold">NITI Aayog NGO DARPAN</td><td class="px-5 py-4 font-mono text-accent">AP/2021/0276162</td><td class="px-5 py-4 text-secondary">DARPAN Registration · March 18, 2021</td></tr>
+301:           </tbody>
+302:         </table>
+303:       </div>
+304:     </div>
+305:   </section>
+306: 
+307:   <!-- Financial Statements -->
+308:   <section id="financials" class="py-16 md:py-20 bg-offwhite border-b border-border">
+309:     <div class="max-w-content mx-auto px-4 md:px-8">
+310:       <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Five-Year Financial Performance</h2>
+311:       <p class="font-sans text-secondary text-base mb-2 max-w-prose">Independently audited by <strong>Sivapuram Subramanyam &amp; Co., Chartered Accountants</strong> (CA Membership No. 029910, Nandyal).</p>
+312:       <div class="overflow-x-auto rounded-sm border border-border mt-8">
+313:         <table class="w-full text-sm font-sans min-w-[700px]">
+314:           <thead>
+315:             <tr class="bg-primary text-white">
+316:               <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Fiscal Year</th>
+317:               <th class="text-right px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Total Inflows (₹)</th>
+318:               <th class="text-left px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest hidden md:table-cell">Key Income Sources</th>
+319:               <th class="text-right px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest">Expenditure (₹)</th>
+320:               <th class="text-right px-5 py-4 font-heading font-semibold text-[11px] uppercase tracking-widest hidden lg:table-cell">Net Position</th>
+321:             </tr>
+322:           </thead>
+323:           <tbody class="divide-y divide-border">
+324:             <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2020–21</td><td class="px-5 py-4 text-right font-semibold text-primary">₹9,84,992</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Divya Foundation COVID Grant (₹8.32L) + Donations</td><td class="px-5 py-4 text-right text-secondary">₹9,82,257</td><td class="px-5 py-4 text-right text-red-500 hidden lg:table-cell">Deficit ₹10,065</td></tr>
+325:             <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2021–22</td><td class="px-5 py-4 text-right font-semibold text-primary">₹64,675</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Member Contributions &amp; Public Donations</td><td class="px-5 py-4 text-right text-secondary">₹61,940</td><td class="px-5 py-4 text-right text-accent hidden lg:table-cell">Surplus +₹1,400</td></tr>
+326:             <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2022–23</td><td class="px-5 py-4 text-right font-semibold text-primary">₹78,369</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Member Fees &amp; Community Contributions</td><td class="px-5 py-4 text-right text-secondary">₹74,234</td><td class="px-5 py-4 text-right text-red-500 hidden lg:table-cell">Deficit ₹143</td></tr>
+327:             <tr class="tbl-row"><td class="px-5 py-4 font-heading font-semibold text-primary">FY 2023–24</td><td class="px-5 py-4 text-right font-semibold text-primary">₹89,515</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Member Dues &amp; Public Donations</td><td class="px-5 py-4 text-right text-secondary">₹87,060</td><td class="px-5 py-4 text-right text-red-500 hidden lg:table-cell">Deficit ₹1,823</td></tr>
+328:             <tr class="tbl-row bg-accent/5"><td class="px-5 py-4 font-heading font-bold text-primary">FY 2024–25 <span class="text-accent text-xs">(FCRA)</span></td><td class="px-5 py-4 text-right font-bold text-accent">₹33,34,097</td><td class="px-5 py-4 text-secondary hidden md:table-cell">Grace TPTC Foundation Foreign Grant (₹33.19L) + Interest</td><td class="px-5 py-4 text-right text-secondary">₹6,48,591</td><td class="px-5 py-4 text-right text-accent font-bold hidden lg:table-cell">Balance ₹26,85,506</td></tr>
+329:           </tbody>
+330:         </table>
+331:       </div>
+332:     </div>
+333:   </section>
+334: 
+335:   <!-- FCRA Banking -->
+336:   <section class="py-16 md:py-20 border-b border-border">
+337:     <div class="max-w-content mx-auto px-4 md:px-8">
+338:       <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">FCRA Banking Credentials</h2>
+339:       <p class="font-sans text-secondary text-base mb-8 max-w-prose">Under MHA guidelines, all foreign contributions must be wire-transferred exclusively into DWA's statutory FCRA account at State Bank of India, New Delhi.</p>
+340:       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+341:         <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Account Name</p><p class="font-heading font-bold text-primary">Dalit Welfare Association</p></div>
+342:         <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Account Number (FCRA)</p><p class="font-heading font-bold text-primary font-mono">40108791616</p></div>
+343:         <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Account Type</p><p class="font-heading font-bold text-primary">FCRA Savings Account</p></div>
+344:         <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">Bank</p><p class="font-heading font-bold text-primary">State Bank of India</p><p class="font-sans text-xs text-secondary mt-1">Main Branch, FCRA Cell (4th Floor)<br/>11 Sansad Marg, New Delhi – 110001</p></div>
+345:         <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">IFSC Code</p><p class="font-heading font-bold text-primary font-mono">SBIN0000691</p></div>
+346:         <div class="border border-border rounded-sm p-5"><p class="text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary mb-1">SWIFT Code</p><p class="font-heading font-bold text-primary font-mono">SBININBB104</p></div>
+347:       </div>
+348:     </div>
+349:   </section>
+350: 
+351:   <!-- Third-party verification -->
+352:   <section class="py-16 md:py-20 bg-offwhite">
+353:     <div class="max-w-content mx-auto px-4 md:px-8">
+354:       <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Third-Party Verification</h2>
+355:       <p class="font-sans text-secondary text-base mb-8 max-w-prose">DWA is listed and verified on all major NGO credibility and donation platforms. Click any badge to verify independently.</p>
+356:       <div class="flex flex-wrap gap-4">
+357:         <a href="https://give.do/discover/18G1/dalit-welfare-association/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 border-2 border-border bg-white rounded-sm px-5 py-4 hover:border-accent transition-colors">
+358:           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4b61de" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+359:           <div><p class="font-heading font-bold text-primary text-sm">Give.do / Give India</p><p class="font-sans text-xs text-secondary">Verified NGO listing</p></div>
+360:         </a>
