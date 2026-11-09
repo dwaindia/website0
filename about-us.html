@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Dalit Welfare Association</title>
+  <meta name="description" content="Learn about Dalit Welfare Association's history, vision, mission, leadership and governance since 1993 in Kurnool, Andhra Pradesh." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { accent:'#2cc980','accent-dk':'#22a86a',primary:'#000105',secondary:'#3d3d3d',offwhite:'#F8F9FA',border:'#E0E0E0',navy:'#0E1F2D' },
+          fontFamily: { heading:['Roboto','Arial','sans-serif'], sans:['Inter','Arial','sans-serif'] },
+          maxWidth: { content:'1280px', prose:'760px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',Arial,sans-serif;color:#000105;background:#fff;margin:0;}
+    h1,h2,h3,h4,h5,h6{font-family:'Roboto',Arial,sans-serif;}
+    #site-header{transition:transform 0.35s cubic-bezier(.4,0,.2,1),box-shadow 0.2s ease;}
+    #site-header.hide{transform:translateY(-100%);}
+    #site-header.shadow{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+    .ham-line{display:block;width:20px;height:2px;background:#000105;border-radius:1px;transition:transform 0.25s,opacity 0.2s;}
+    #mobile-menu{transition:transform 0.32s cubic-bezier(.4,0,.2,1);}
+    #mobile-overlay{transition:opacity 0.3s ease;}
+    #search-popup{transition:opacity 0.2s ease;}
+    .nav-link{position:relative;}
+    .nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#2cc980;transition:width 0.22s ease;}
+    .nav-link:hover::after{width:100%;}
+    .nav-link.active::after{width:100%;}
+    :focus-visible{outline:2px solid #2cc980;outline-offset:3px;}
+    .s-item:hover .s-icon{background:#2cc980;color:#fff;}
+    .timeline-item::before{content:'';position:absolute;left:-1.5rem;top:0.35rem;width:10px;height:10px;border-radius:50%;background:#2cc980;border:2px solid #fff;box-shadow:0 0 0 2px #2cc980;}
+  </style>
+</head>
+<body class="pt-16 md:pt-20">
+
+<!-- HEADER -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
+  <div class="max-w-content mx-auto px-4 md:px-8">
+    <div class="relative flex items-center h-16 md:h-20">
+      <a href="index.html" class="flex items-center gap-3 shrink-0 z-10" aria-label="Dalit Welfare Association — Home">
+        <img src="logo.jpg" alt="DWA logo" width="44" height="44" class="w-10 h-10 md:w-11 md:h-11 rounded-sm object-cover" fetchpriority="high" />
+        <div class="hidden md:block leading-tight">
+          <span class="block font-heading font-bold text-primary text-sm leading-snug">Dalit Welfare Association</span>
+          <span class="block text-[10px] text-secondary tracking-widest uppercase font-sans">Est. 1993 · Kurnool, AP</span>
+        </div>
+      </a>
+      <nav class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 z-10" aria-label="Primary navigation">
+        <a href="about-us.html"       class="nav-link active font-heading font-semibold text-[13px] tracking-widest text-accent">ABOUT US</a>
+        <a href="programs.html"       class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors">PROGRAMS</a>
+        <a href="accountability.html" class="nav-link font-heading font-semibold text-[13px] tracking-widest text-primary hover:text-accent transition-colors">ACCOUNTABILITY</a>
+      </nav>
+      <div class="ml-auto flex items-center gap-2 md:gap-3 z-10">
+        <button id="search-btn" aria-label="Search" class="w-9 h-9 flex items-center justify-center rounded-sm text-secondary hover:text-accent transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="donate.html" class="hidden sm:inline-flex items-center gap-2 bg-red-600 text-white font-heading font-semibold text-[12px] tracking-widest px-4 py-2.5 rounded-sm hover:bg-red-700 transition-colors">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          DONATE NOW
+        </a>
+        <button id="hamburger" class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm" aria-label="Open menu" aria-expanded="false">
+          <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE OVERLAY -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/60 z-[55] opacity-0 pointer-events-none" aria-hidden="true"></div>
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white z-[60] flex flex-col translate-x-full shadow-2xl" role="dialog" aria-modal="true">
+  <div class="flex items-center justify-between px-5 py-4 border-b border-border">
+    <span class="font-heading font-bold text-primary text-sm tracking-wide">MENU</span>
+    <button id="close-menu" aria-label="Close menu" class="w-9 h-9 flex items-center justify-center text-secondary hover:text-accent transition-colors">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col px-5 py-2">
+    <a href="about-us.html"       class="py-4 border-b border-border font-heading font-semibold text-sm tracking-widest text-accent">ABOUT US</a>
+    <a href="programs.html"       class="py-4 border-b border-border font-heading font-semibold text-sm tracking-widest text-primary hover:text-accent transition-colors">PROGRAMS</a>
+    <a href="accountability.html" class="py-4 font-heading font-semibold text-sm tracking-widest text-primary hover:text-accent transition-colors">ACCOUNTABILITY</a>
+  </nav>
+  <div class="mt-auto p-5 border-t border-border">
+    <a href="donate.html" class="flex items-center justify-center gap-2 bg-red-600 text-white font-heading font-semibold text-[12px] tracking-widest px-4 py-3.5 rounded-sm hover:bg-red-700 transition-colors w-full">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      DONATE NOW
+    </a>
+  </div>
+</div>
+
+<!-- SEARCH POPUP -->
+<div id="search-popup" class="fixed inset-0 z-[70] bg-black/60 opacity-0 pointer-events-none" role="dialog" aria-modal="true">
+  <div class="flex justify-center pt-20 md:pt-28 px-4">
+    <div class="bg-white w-full max-w-xl rounded-sm shadow-2xl overflow-hidden">
+      <div class="flex items-center border-b border-border px-4 py-3.5 gap-3">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3d3d3d" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="search-input" type="search" placeholder="Search programs, sections, documents…" class="flex-1 font-sans text-sm text-primary placeholder:text-gray-400 outline-none bg-transparent" autocomplete="off" />
+        <button id="close-search" aria-label="Close search" class="text-secondary hover:text-accent transition-colors p-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="p-4 max-h-[60vh] overflow-y-auto">
+        <p class="font-heading font-semibold text-[10px] text-secondary uppercase tracking-[0.12em] mb-3">Popular Sections</p>
+        <ul id="search-results" class="space-y-0.5">
+          <li class="s-item-wrap" data-kw="who we are history leadership governance founding"><a href="about-us.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-accent/10 text-accent rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Who We Are</p><p class="font-sans text-xs text-secondary">History, leadership &amp; governance</p></div></a></li>
+          <li class="s-item-wrap" data-kw="programs women banking entrepreneurship"><a href="programs.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-accent/10 text-accent rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Our Programs</p><p class="font-sans text-xs text-secondary">Women's banking, education, relief</p></div></a></li>
+          <li class="s-item-wrap" data-kw="accountability fcra pan 80g darpan compliance"><a href="accountability.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-accent/10 text-accent rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Accountability &amp; Legal</p><p class="font-sans text-xs text-secondary">FCRA, 80G, PAN, DARPAN</p></div></a></li>
+          <li class="s-item-wrap" data-kw="donate donation support give 80g tax"><a href="donate.html" class="s-item flex items-center gap-3 px-3 py-3 rounded-sm hover:bg-offwhite transition-colors"><span class="s-icon w-8 h-8 flex items-center justify-center bg-red-100 text-red-600 rounded-sm transition-colors shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><div><p class="font-heading font-semibold text-sm text-primary">Donate &amp; Support</p><p class="font-sans text-xs text-secondary">Give.do, 80G benefits, wire transfer</p></div></a></li>
+        </ul>
+        <p id="no-results" class="hidden font-sans text-sm text-secondary text-center py-6">No sections found.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO BANNER -->
+<section class="bg-navy border-b-4 border-accent py-16 md:py-24" aria-label="About Us banner">
+  <div class="max-w-content mx-auto px-4 md:px-8">
+    <p class="inline-flex items-center gap-2 text-accent text-[11px] font-heading font-semibold tracking-[0.14em] uppercase mb-4">
+      <span class="inline-block w-5 h-px bg-accent"></span> Our Story
+    </p>
+    <h1 class="font-heading font-black text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">Who We Are</h1>
+    <p class="font-sans text-gray-300 text-lg max-w-2xl leading-relaxed">
+      A non-profit voluntary society born out of a commitment to social justice — serving marginalised communities across rural Kurnool District since June 1993.
+    </p>
+  </div>
+</section>
+
+<main>
+
+  <!-- Vision & Mission -->
+  <section class="py-16 md:py-20 border-b border-border">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div class="border-t-4 border-accent pt-8">
+          <h2 class="font-heading font-bold text-2xl text-primary mb-4">Our Vision</h2>
+          <p class="font-sans text-secondary text-base leading-relaxed">
+            To be a sustainable organisation empowering the rural poor — economically and socially — irrespective of caste and creed, so that every individual can live with dignity, opportunity, and hope.
+          </p>
+        </div>
+        <div class="border-t-4 border-primary pt-8">
+          <h2 class="font-heading font-bold text-2xl text-primary mb-4">Our Mission</h2>
+          <p class="font-sans text-secondary text-base leading-relaxed">
+            To enable the rural poor to attain sustainable growth by creating livelihood opportunities through microfinance and income-generation programs via a fair, transparent, and community-driven system.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History / Timeline -->
+  <section class="py-16 md:py-20 bg-offwhite border-b border-border">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-12">Our History</h2>
+      <div class="border-l-2 border-accent pl-8 space-y-10">
+
+        <div class="timeline-item relative">
+          <span class="font-heading font-black text-accent text-sm tracking-widest block mb-1">1993</span>
+          <h3 class="font-heading font-bold text-xl text-primary mb-2">Foundation &amp; Registration</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Dalit Welfare Association formally registered under the Societies Registration Act XXI of 1860 (Reg No. 384/1993) through the District Registrar of Assurances, Kurnool, on June 22, 1993.</p>
+        </div>
+
+        <div class="timeline-item relative">
+          <span class="font-heading font-black text-accent text-sm tracking-widest block mb-1">2004 – 2012</span>
+          <h3 class="font-heading font-bold text-xl text-primary mb-2">Grassroots Campaigns</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Launched adult literacy drives, solid waste management programmes, safe drinking water initiatives, and community hygiene campaigns across Kurnool District villages.</p>
+        </div>
+
+        <div class="timeline-item relative">
+          <span class="font-heading font-black text-accent text-sm tracking-widest block mb-1">2016 – 2017</span>
+          <h3 class="font-heading font-bold text-xl text-primary mb-2">First Major International Grant</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Executed the first overseas-funded project — a dairy farming &amp; livestock programme funded by Global Compassion Inc. (USA) with a grant of ₹4,39,000, directly benefiting BPL families.</p>
+        </div>
+
+        <div class="timeline-item relative">
+          <span class="font-heading font-black text-accent text-sm tracking-widest block mb-1">2020 – 2022</span>
+          <h3 class="font-heading font-bold text-xl text-primary mb-2">COVID-19 Emergency Relief</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Distributed ₹8.32 Lakh in emergency relief (funded by Divya Foundation) — 30 kg dry ration kits and youth happiness kits — to BPL families and street children during the pandemic.</p>
+        </div>
+
+        <div class="timeline-item relative">
+          <span class="font-heading font-black text-accent text-sm tracking-widest block mb-1">2024 – 2025</span>
+          <h3 class="font-heading font-bold text-xl text-primary mb-2">Women's Banking &amp; Entrepreneurship Programme</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Launched the flagship 12-month programme targeting 50 rural women entrepreneurs in Sirivella Block. Funded by Grace TPTC Foundation via an FCRA grant of ₹33,19,167 — the largest programme in DWA's history.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section id="leadership" class="py-16 md:py-20 border-b border-border">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary mb-3">Leadership &amp; Governing Body</h2>
+      <p class="font-sans text-secondary text-base mb-10 max-w-prose">DWA's administrative and managing committee comprises experienced local community leaders and social workers committed to transparent, ethical governance.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="border border-border p-6 rounded-sm hover:border-accent transition-colors">
+          <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-3">President</span>
+          <h3 class="font-heading font-bold text-primary text-lg mb-1">Sannala Samuel</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Leads organisational policy, legal administration, and governance compliance under society bylaws.</p>
+        </div>
+
+        <div class="border border-border p-6 rounded-sm hover:border-accent transition-colors">
+          <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-3">Vice President</span>
+          <h3 class="font-heading font-bold text-primary text-lg mb-1">Jangam Nirmala</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Oversees field operations and community mobilisation across Kurnool District.</p>
+        </div>
+
+        <div class="border border-border p-6 rounded-sm hover:border-accent transition-colors">
+          <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-3">Secretary</span>
+          <h3 class="font-heading font-bold text-primary text-lg mb-1">Bandela Lakshmamma &amp; Mella Naga Pullaiah</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Responsible for correspondence, statutory filings, and co-signing bank withdrawals.</p>
+        </div>
+
+        <div class="border border-border p-6 rounded-sm hover:border-accent transition-colors">
+          <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-accent bg-accent/10 px-2 py-0.5 rounded-sm mb-3">Treasurer</span>
+          <h3 class="font-heading font-bold text-primary text-lg mb-1">Sannala Sarojamma</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Manages accounting registers, financial statements, balance sheets, and annual CA audits.</p>
+        </div>
+
+        <div class="border border-border p-6 rounded-sm hover:border-accent transition-colors">
+          <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary bg-gray-100 px-2 py-0.5 rounded-sm mb-3">Directors</span>
+          <h3 class="font-heading font-bold text-primary text-lg mb-1">Bandela Chinna Subbarayudu · Ponnapati Thulasamma · Paarshapu Laxmi Devi</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">Board directors providing community oversight and programme guidance.</p>
+        </div>
+
+        <div class="border border-border p-6 rounded-sm hover:border-accent transition-colors">
+          <span class="inline-block text-[10px] font-heading font-semibold uppercase tracking-widest text-secondary bg-gray-100 px-2 py-0.5 rounded-sm mb-3">Project Officer</span>
+          <h3 class="font-heading font-bold text-primary text-lg mb-1">S. Moses</h3>
+          <p class="font-sans text-secondary text-sm leading-relaxed">
+            <a href="tel:+917989441243" class="hover:text-accent transition-colors">+91 79894 41243</a><br/>
+            <a href="mailto:moses.s0038@gmail.com" class="hover:text-accent transition-colors break-all">moses.s0038@gmail.com</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Mandate -->
+  <section class="py-16 md:py-20 bg-navy text-white">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <h2 class="font-heading font-bold text-3xl md:text-4xl mb-10">Core Mandate &amp; Principles</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="border border-gray-700 p-5 rounded-sm"><div class="w-8 h-8 bg-accent/20 rounded-sm flex items-center justify-center mb-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><h3 class="font-heading font-bold text-base mb-2">No Profit Motive</h3><p class="font-sans text-gray-400 text-sm leading-relaxed">Operates strictly without any profit motive or commercial profit-sharing under registered bylaws.</p></div>
+        <div class="border border-gray-700 p-5 rounded-sm"><div class="w-8 h-8 bg-accent/20 rounded-sm flex items-center justify-center mb-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h3 class="font-heading font-bold text-base mb-2">Non-Political</h3><p class="font-sans text-gray-400 text-sm leading-relaxed">Prohibits political activities, agitation, or partisan engagement of any kind.</p></div>
+        <div class="border border-gray-700 p-5 rounded-sm"><div class="w-8 h-8 bg-accent/20 rounded-sm flex items-center justify-center mb-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h3 class="font-heading font-bold text-base mb-2">No Office Salaries</h3><p class="font-sans text-gray-400 text-sm leading-relaxed">Office bearers receive no salary or dividends from society funds — fully volunteer-led governance.</p></div>
+        <div class="border border-gray-700 p-5 rounded-sm"><div class="w-8 h-8 bg-accent/20 rounded-sm flex items-center justify-center mb-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2cc980" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3 class="font-heading font-bold text-base mb-2">Inclusive Service</h3><p class="font-sans text-gray-400 text-sm leading-relaxed">Serves all communities irrespective of caste, creed or religion with equal dignity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 border-t border-border text-center">
+    <div class="max-w-content mx-auto px-4 md:px-8">
+      <h2 class="font-heading font-black text-3xl md:text-4xl text-primary mb-4">Support Our Mission</h2>
+      <p class="font-sans text-secondary text-lg mb-8 max-w-xl mx-auto">Your contribution directly funds livelihood programs, school supplies, and emergency relief for the most vulnerable families in rural Kurnool.</p>
+      <a href="donate.html" class="inline-flex items-center gap-2 bg-red-600 text-white font-heading font-semibold text-sm tracking-widest px-8 py-4 rounded-sm hover:bg-red-700 transition-colors">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        DONATE NOW
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-primary text-white font-sans" role="contentinfo">
+  <div class="max-w-content mx-auto px-4 md:px-8 py-14 md:py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="index.html" class="inline-flex items-center gap-3 mb-4"><img src="logo.jpg" alt="DWA" width="40" height="40" loading="lazy" class="w-10 h-10 rounded-sm object-cover opacity-90"/><span class="font-heading font-bold text-base text-white leading-tight">Dalit Welfare<br/>Association</span></a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4 max-w-xs">A registered non-profit empowering marginalised communities in rural Kurnool since 1993.</p>
+        <div class="flex gap-3">
+          <a href="https://www.instagram.com/dwaindia" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center border border-gray-700 rounded-sm text-gray-400 hover:border-accent hover:text-accent transition-colors" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://id.linkedin.com/company/dalitwelfareassociation" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center border border-gray-700 rounded-sm text-gray-400 hover:border-accent hover:text-accent transition-colors" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-4">Programs</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="programs.html#womens-banking" class="hover:text-accent transition-colors">Women's Banking &amp; Entrepreneurship</a></li>
+          <li><a href="programs.html#education"      class="hover:text-accent transition-colors">Child Education Support</a></li>
+          <li><a href="programs.html#relief"         class="hover:text-accent transition-colors">Emergency &amp; Relief</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-4">Organisation</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="about-us.html"       class="hover:text-accent transition-colors text-accent">Who We Are</a></li>
+          <li><a href="accountability.html" class="hover:text-accent transition-colors">Accountability</a></li>
+          <li><a href="donate.html"         class="hover:text-accent transition-colors">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-4">Contact</h3>
+        <address class="not-italic text-sm text-gray-400 leading-relaxed">
+          H.No. 4-84, S.C. Colony,<br/>Parnapalli Village, Kurnool District,<br/>AP — 518523<br/><br/>
+          <a href="tel:+918309744864" class="hover:text-accent transition-colors block mb-1">+91 83097 44864</a>
+          <a href="mailto:dalitwelfareassociation1@gmail.com" class="hover:text-accent transition-colors break-all">dalitwelfareassociation1@gmail.com</a>
+        </address>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-gray-800">
+    <div class="max-w-content mx-auto px-4 md:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+      <p>&copy; <span id="year"></span> Dalit Welfare Association · Reg. 384/1993 · PAN AAKFD2353B · FCRA 010270166</p>
+      <p class="flex items-center gap-1.5"><span class="inline-block w-2 h-2 rounded-full bg-accent"></span>80G Tax-Deductible · NITI Aayog AP/2021/0276162</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const header = document.getElementById('site-header');
+  let lastY = window.scrollY, ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(() => { const y = window.scrollY; if (y > lastY && y > 90) header.classList.add('hide'); else header.classList.remove('hide'); header.classList.toggle('shadow', y > 10); lastY = y; ticking = false; }); ticking = true; }
+  }, { passive: true });
+  const hamburger = document.getElementById('hamburger'), mobileMenu = document.getElementById('mobile-menu'), overlay = document.getElementById('mobile-overlay'), closeMenuBtn = document.getElementById('close-menu');
+  function openMenu() { mobileMenu.classList.remove('translate-x-full'); overlay.classList.remove('opacity-0','pointer-events-none'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeMenu() { mobileMenu.classList.add('translate-x-full'); overlay.classList.add('opacity-0','pointer-events-none'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  hamburger.addEventListener('click', openMenu); closeMenuBtn.addEventListener('click', closeMenu); overlay.addEventListener('click', closeMenu);
+  const searchBtn = document.getElementById('search-btn'), searchPopup = document.getElementById('search-popup'), closeSearch = document.getElementById('close-search'), searchInput = document.getElementById('search-input'), items = document.querySelectorAll('.s-item-wrap'), noResults = document.getElementById('no-results');
+  function openSearch() { searchPopup.classList.remove('opacity-0','pointer-events-none'); document.body.style.overflow='hidden'; setTimeout(() => searchInput.focus(), 50); }
+  function closeSearchFn() { searchPopup.classList.add('opacity-0','pointer-events-none'); document.body.style.overflow=''; searchInput.value=''; items.forEach(i => i.style.display=''); noResults.classList.add('hidden'); }
+  searchBtn.addEventListener('click', openSearch); closeSearch.addEventListener('click', closeSearchFn); searchPopup.addEventListener('click', (e) => { if (e.target === searchPopup) closeSearchFn(); });
+  searchInput.addEventListener('input', () => { const q = searchInput.value.toLowerCase().trim(); let v = 0; items.forEach(item => { const show = !q || item.textContent.toLowerCase().includes(q) || (item.dataset.kw||'').includes(q); item.style.display = show ? '' : 'none'; if (show) v++; }); noResults.classList.toggle('hidden', v > 0 || !q); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeSearchFn(); } });
+</script>
+</body>
+</html>
